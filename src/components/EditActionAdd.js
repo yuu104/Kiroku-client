@@ -35,6 +35,7 @@ const NameInp = styled.input`
   cursor: pointer;
   font-size: 16px;
   box-sizing: border-box;
+  outline: none;
 `;
 const UnderLine = styled.div`
   width: 90%;
@@ -47,23 +48,27 @@ const UnderLine = styled.div`
   transition: transform 0.25s ease-out;
 `;
 const Container = styled.div`
-  position: relative;
   width: 95%;
-  height: 600px;
+  height: 500px;
   background-color: #ffff;
   border-radius: 5px;
   padding: 20px 30px;
   box-sizing: border-box;
+  overflow: scroll;
   ${NameInp}:focus + ${UnderLine} {
     transform: scaleX(1);
   }
   @media(min-width: 600px) {
     width: 400px;
+    height: 600px;
   }
 `;
 const ColorLabel = styled.label`
   display: block;
-  margin: 40px 0 5px 0;
+  margin: 20px 0 5px 0;
+  @media (min-width: 600px) {
+    margin: 40px 0 5px 0;
+  }
 `;
 const ColorContainer = styled.div`
   width: 100%;
@@ -87,6 +92,12 @@ const ColorItem = styled.div`
   border-radius: 5px;
   border: ${props => props.color === props.focusKey ? '2px solid #0d0d0d' : 'none'};
 `;
+const ButtonContainer = styled.div`
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  position: relative;
+`
 const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -96,15 +107,13 @@ const Button = styled.div`
   color: #ffff;
   background-color: #0d0d0d;
   cursor: pointer;
-  margin: 30px auto;
   &:hover {
     opacity: 0.8;
   }
 `;
 const DeleteButton = styled.div`
   position: absolute;
-  bottom: 55px;
-  right: 80px;
+  right: 20px;
   width: 30px;
   height: 30px;
   color: #0d0d0d;
@@ -197,7 +206,7 @@ const EditActionAdd = (props) => {
 
   const deleteAction = () => {
     axios.delete(
-      "https://kiroku-server.herokuapp.com/actions/delete",
+      "http://localhost:3001/actions/delete",
       { 
         data: {
           id: props.id
@@ -244,16 +253,18 @@ const EditActionAdd = (props) => {
             })
           }
         </ColorContainer>
-        <Button onClick={props.onClick}>{props.buttonName}</Button>
-        {
-          isEdit ? (
-            <DeleteButton onClick={() => setIsOpen(true)}>
-              <DeleteIcon icon={faTrashAlt}></DeleteIcon>
-            </DeleteButton>
-          ) : (
-            null
-          )
-        }
+        <ButtonContainer>
+          <Button onClick={props.onClick}>{props.buttonName}</Button>
+          {
+            isEdit ? (
+              <DeleteButton onClick={() => setIsOpen(true)}>
+                <DeleteIcon icon={faTrashAlt}></DeleteIcon>
+              </DeleteButton>
+            ) : (
+              null
+            )
+          }
+        </ButtonContainer>
       </Container>
       <ChoiceModal
         title="本当に削除しますか？"

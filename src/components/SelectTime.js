@@ -3,7 +3,7 @@ import styled from "styled-components";
 // styled-components →
 const InpBox = styled.div`
   margin: 0 auto 5px auto;
-  width: 150px;
+  width: 200px;
 `;
 
 const InpTitle = styled.div`
@@ -38,7 +38,7 @@ const Select = styled.select`
 `;
 
 const Colon = styled.span`
-  font-weight: 700;
+  font-weight: 600;
 `;
 // ← styled-components
 

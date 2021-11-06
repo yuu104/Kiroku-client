@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
+import axios from "axios";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link as Scroll } from "react-scroll";
@@ -12,6 +15,7 @@ import editRecord from "../images/editRecord.png";
 import editAction from "../images/editAction.png";
 import HomeHeader from "../components/HomeHeader";
 import Description from "../components/Description";
+
 
 // styled-components →
 const Container = styled.div`
@@ -98,6 +102,18 @@ const DescContainer = styled.div`
 
 
 const Home = () => {
+
+  let history = useHistory();
+
+  useEffect(() => {
+    axios.get("http://localhost:3001/timeLog",
+      {
+        headers: {accessToken: localStorage.getItem("accessToken")}
+      }
+    ).then((res) => {
+      if (!res.data.isInvalid) history.push("/timeRecord");
+    })
+  }, [history]);
 
   return (
     <>
