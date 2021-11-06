@@ -23,7 +23,7 @@ const SelectBox = styled.div`
 `;
 
 const Select = styled.select`
-  width: 100%;
+  width: 65px;
   height: 95%;
   font-size: 20px;
   border: none;
@@ -32,7 +32,6 @@ const Select = styled.select`
   cursor: pointer;
   border-radius: 5px;
   padding-right: 5px;
-  margin-right: 15px;
   &:hover {
     background-color: rgba(0,0,0,0.1);
   }
