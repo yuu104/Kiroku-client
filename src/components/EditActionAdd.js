@@ -37,8 +37,7 @@ const NameInp = styled.input`
   box-sizing: border-box;
   outline: none;
   border-radius: 0;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color : rgba(0,0,0,0)
+  appearance: none;
 `;
 const UnderLine = styled.div`
   width: 90%;
