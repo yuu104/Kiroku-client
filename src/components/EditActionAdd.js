@@ -36,6 +36,8 @@ const NameInp = styled.input`
   font-size: 16px;
   box-sizing: border-box;
   outline: none;
+  border-radius: 0;
+  appearance: none;
 `;
 const UnderLine = styled.div`
   width: 90%;

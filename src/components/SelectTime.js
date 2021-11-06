@@ -3,7 +3,7 @@ import styled from "styled-components";
 // styled-components →
 const InpBox = styled.div`
   margin: 0 auto 5px auto;
-  width: 200px;
+  width: 180px;
 `;
 
 const InpTitle = styled.div`
@@ -23,7 +23,7 @@ const SelectBox = styled.div`
 `;
 
 const Select = styled.select`
-  width: 50px;
+  width: 100%;
   height: 95%;
   font-size: 20px;
   border: none;
@@ -32,6 +32,7 @@ const Select = styled.select`
   cursor: pointer;
   border-radius: 5px;
   padding-right: 5px;
+  margin-right: 15px;
   &:hover {
     background-color: rgba(0,0,0,0.1);
   }
