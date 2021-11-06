@@ -29,7 +29,7 @@ const EditAction = () => {
       alert("カラーが選択されていません");
     } else {
       axios.post(
-        "http://localhost:3001/actions/update",
+        "https://kiroku-server.herokuapp.com/actions/update",
         {
           id: id,
           item_name: name,
@@ -42,7 +42,7 @@ const EditAction = () => {
   }
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/actions/edit/${id}`).then((res) => {
+    axios.get(`https://kiroku-server.herokuapp.com/actions/edit/${id}`).then((res) => {
       setName(res.data[0].item_name);
       setColor(res.data[0].color);
       setFocusKey(res.data[0].color);

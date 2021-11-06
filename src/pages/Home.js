@@ -106,7 +106,7 @@ const Home = () => {
   let history = useHistory();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/timeLog",
+    axios.get("https://kiroku-server.herokuapp.com/timeLog",
       {
         headers: {accessToken: localStorage.getItem("accessToken")}
       }
