@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBackspace, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleLeft, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import CloseButton from "../components/CloseButton";
 import SelectTime from "../components/SelectTime";
 import axios from "axios";
@@ -12,7 +12,6 @@ import IconGrid from "../components/IconGrid";
 import ChoiceModal from "../components/ChoiceModal";
 
 Modal.setAppElement("#root");
-
 // styled-components →
 const Container = styled.div`
   position: relative;
@@ -20,7 +19,6 @@ const Container = styled.div`
   margin-bottom: 30px;
   background-color: #fff;
   @media(min-width: 900px) {
-    //padding-left: 40px;
     padding: 15px;
     height: 500px;
   }
@@ -136,6 +134,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
     opacity: 0.8;
   }
 `;
+// ← styled-components
 
 const EditTimeRecord = (props) => {
 
@@ -188,7 +187,7 @@ const EditTimeRecord = (props) => {
     if (newStartDate > new Date() || newFinishDate > new Date()) changeable = 'fast'
     if (changeable === 'ok') {
       axios.put(
-        "https://kiroku-server.herokuapp.com/timeLog/edit",
+        "http://localhost:3001/timeLog/edit",
         {
           id: editId,
           start_time: `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()},${startHours},${startMinutes}`,
@@ -225,7 +224,8 @@ const EditTimeRecord = (props) => {
       return;
     }
     if (newStartDate > new Date() || newFinishDate > new Date()) {
-      alert("現在よりも後の時刻は記録することができません。")
+      alert("現在よりも後の時刻は記録することができません。");
+      return;
     }
     let addable = true;
     for (let i = 0; i < filterData.length; i++) {
@@ -239,7 +239,7 @@ const EditTimeRecord = (props) => {
     }
     if (addable) {
       axios.post(
-        "https://kiroku-server.herokuapp.com/timeLog/add",
+        "http://localhost:3001/timeLog/add",
         {
           item_name: itemNamem,
           color: color,
@@ -265,7 +265,7 @@ const EditTimeRecord = (props) => {
 
   const deleteRecord = () => {
     axios.delete(
-      "https://kiroku-server.herokuapp.com/timeLog/delete",
+      "http://localhost:3001/timeLog/delete",
       {
         data: {
           id: editId
@@ -282,7 +282,7 @@ const EditTimeRecord = (props) => {
     <Container>
       <TitleContainer>
         <BackIcon
-          icon={faBackspace}
+          icon={faAngleDoubleLeft}
           onClick={() => props.changeIsEditRecord(false)}
         >
         </BackIcon>

@@ -15,13 +15,14 @@ const Overlay = styled.div`
 
 const Container = styled.div`
   width: 95%;
-  height: 600px;
+  height: 500px;
   background-color: #ffff;
   border-radius: 5px;
   padding: 20px;
   box-sizing: border-box;
   @media(min-width: 600px) {
     width: 400px;
+    height: 600px;
   }
 `;
 

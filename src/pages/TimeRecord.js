@@ -154,7 +154,7 @@ const TimeRecord = (props) => {
   }
   
   useEffect(() => {
-    axios.get("https://kiroku-server.herokuapp.com/timeLog",
+    axios.get("http://localhost:3001/timeLog",
       {
         headers: {accessToken: localStorage.getItem("accessToken")}
       }

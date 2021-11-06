@@ -33,7 +33,7 @@ const IconGrid = (props) => {
   const [actions, setActions] = useState([]);
   useEffect(() => {
     axios.get(
-      "https://kiroku-server.herokuapp.com/actions",
+      "http://localhost:3001/actions",
       {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
