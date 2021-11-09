@@ -69,7 +69,7 @@ const StartAction = (props) => {
 
   const start = () => {
     const date = `${props.time.getFullYear()},${props.time.getMonth()+1},${props.time.getDate()},${startHours},${startMinutes}`
-    axios.post("http://localhost:3001/timeLog/start",
+    axios.post("https://kiroku-server.herokuapp.com/timeLog/start",
       {
         item_name: props.name,
         color: props.color,

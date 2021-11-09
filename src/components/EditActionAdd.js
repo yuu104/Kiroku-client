@@ -208,7 +208,7 @@ const EditActionAdd = (props) => {
 
   const deleteAction = () => {
     axios.delete(
-      "http://localhost:3001/actions/delete",
+      "https://kiroku-server.herokuapp.com/actions/delete",
       { 
         data: {
           id: props.id
