@@ -69,7 +69,7 @@ const StartAction = (props) => {
 
   const start = () => {
     const date = `${props.time.getFullYear()},${props.time.getMonth()+1},${props.time.getDate()},${startHours},${startMinutes}`
-    axios.post("https://kiroku-server.herokuapp.com/timeLog/start",
+    axios.post("http://localhost:3001/timeLog/start",
       {
         item_name: props.name,
         color: props.color,
@@ -97,9 +97,9 @@ const StartAction = (props) => {
         <SelectTime
           inpTitle="開始時間"
           hours={startHours}
-          setHours={() => setStartHours()}
+          changeHours={() => setStartHours()}
           minutes={startMinutes}
-          setMinutes={() => setStartMinutes()}
+          changeMinutes={() => setStartMinutes()}
         />
         <Button onClick={start}>開始</Button>
       </Container>
