@@ -133,7 +133,7 @@ const TimeChart = (props) => {
 
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
-    axios.get(`https://kiroku-server.herokuapp.com/timeLog/timeChart/${dateString}`,
+    axios.get(`http://localhost:3001/timeLog/timeChart/${dateString}`,
       {
         headers: {accessToken: localStorage.getItem("accessToken")}
       }
