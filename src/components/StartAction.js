@@ -97,9 +97,9 @@ const StartAction = (props) => {
         <SelectTime
           inpTitle="開始時間"
           hours={startHours}
-          changeHours={() => setStartHours()}
+          changeHours={(e) => setStartHours(e)}
           minutes={startMinutes}
-          changeMinutes={() => setStartMinutes()}
+          changeMinutes={(e) => setStartMinutes(e)}
         />
         <Button onClick={start}>開始</Button>
       </Container>
