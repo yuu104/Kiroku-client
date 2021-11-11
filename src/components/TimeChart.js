@@ -129,7 +129,7 @@ const TimeChart = (props) => {
 
   const [display, setDisplay] = useState('24h');
 
-  let dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`
+  let dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`;
 
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
@@ -219,6 +219,7 @@ const TimeChart = (props) => {
         time: time
       });
     });
+    loop:
     for (let i = 0; i < totalChartData.length; i++) {
       for (let j = i+1; j < totalChartData.length; j++) {
         if (
@@ -227,6 +228,8 @@ const TimeChart = (props) => {
         ) {
           totalChartData[i].time += totalChartData[j].time;
           totalChartData.splice(j, 1);
+          i -= 1;
+          continue loop;
         }
       }
     }

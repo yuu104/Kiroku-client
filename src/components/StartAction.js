@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import CloseButton from "./CloseButton";
@@ -67,8 +67,43 @@ const StartAction = (props) => {
   const [startHours, setStartHours] = useState(alignment(props.time.getHours()));
   const [startMinutes, setStartMinutes] = useState(alignment(props.time.getMinutes()));
 
+  const [finishTimes, setFinishTimes] = useState([]);
+
+  const dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`;
+
+useEffect(() => {
+  axios.get(`https://kiroku-server.herokuapp.com/timeLog/timeChart/${dateString}`, 
+    {
+      headers: {accessToken: localStorage.getItem("accessToken")}
+    }
+  ).then((res) => {
+    if (res.data.isInvalid) {
+      history.push("/login");
+    } else {
+      const tmp = [];
+      res.data.forEach((data) => {
+        const finishTimeData = data.finish_time.split(",");
+        const finishTime = new Date(finishTimeData[0], finishTimeData[1]-1, finishTimeData[2],finishTimeData[3], finishTimeData[4]);
+        tmp.push(finishTime);
+      });
+      setFinishTimes(tmp);
+    }
+  });
+},[history, dateString]);
+
   const start = () => {
     const date = `${props.time.getFullYear()},${props.time.getMonth()+1},${props.time.getDate()},${startHours},${startMinutes}`
+
+    finishTimes.sort((a, b) => {
+      return (a < b ? 1 : -1);
+    });
+    const dates = date.split(',');
+    const nowDate = new Date(dates[0], dates[1]-1, dates[2], dates[3], dates[4]);
+    if (finishTimes[0] > nowDate) {
+      alert("この時刻からは開始できません。");
+      return;
+    }
+    
     axios.post("https://kiroku-server.herokuapp.com/timeLog/start",
       {
         item_name: props.name,
