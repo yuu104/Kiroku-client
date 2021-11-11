@@ -243,6 +243,7 @@ const TimeRecord = (props) => {
             changeIsOpen={changeIsOpen}
             changeIsDoing={changeIsDoing}
             changeNowId={changeNowId}
+            nowDay={props.nowDay}
           />
         ) : (
           null

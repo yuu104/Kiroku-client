@@ -178,7 +178,7 @@ const EditTimeRecord = (props) => {
     for (let i = 0; i < filterData.length; i++) { 
       if (filterData[i].id === editId) continue;
       if (
-        (newStartDate > filterData[i].start_time && newStartDate < filterData[i].finish_time) || (newFinishDate > filterData[i].start_time && newFinishDate < filterData[i].finish_time)
+        (newStartDate >= filterData[i].start_time && newStartDate < filterData[i].finish_time) || (newFinishDate > filterData[i].start_time && newFinishDate < filterData[i].finish_time)
       ) {
         changeable = 'duplicate';
         break;
@@ -231,7 +231,7 @@ const EditTimeRecord = (props) => {
     for (let i = 0; i < filterData.length; i++) {
       if (filterData[i].id === editId) continue;
       if (
-        (newStartDate > filterData[i].start_time && newStartDate < filterData[i].finish_time) || (newFinishDate > filterData[i].start_time && newFinishDate < filterData[i].finish_time)
+        (newStartDate >= filterData[i].start_time && newStartDate < filterData[i].finish_time) || (newFinishDate > filterData[i].start_time && newFinishDate < filterData[i].finish_time)
       ) {
         addable = false;
         break;
