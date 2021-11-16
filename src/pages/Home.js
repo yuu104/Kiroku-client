@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link as Scroll } from "react-scroll";
-import pieImg from "../images/pie.jpg";
+import pieImg from "../images/pie.png";
 import top24h from "../images/top24h.png";
 import topTotal from "../images/topTotal.png";
 import startAction from "../images/startAction.png";
