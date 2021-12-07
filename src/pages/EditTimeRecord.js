@@ -186,10 +186,9 @@ const EditTimeRecord = (props) => {
     }
     if (newStartDate > new Date() || newFinishDate > new Date()) changeable = 'fast'
     if (changeable === 'ok') {
-      axios.put(
-        "https://kiroku-server.herokuapp.com/timeLog/edit",
+      axios.patch(
+        `https://kiroku-server.herokuapp.com/logs/${editId}/edit`,
         {
-          id: editId,
           start_time: `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()},${startHours},${startMinutes}`,
           finish_time: `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()},${finishHours},${finishMinutes}`
         }
@@ -239,7 +238,7 @@ const EditTimeRecord = (props) => {
     }
     if (addable) {
       axios.post(
-        "https://kiroku-server.herokuapp.com/timeLog/add",
+        "https://kiroku-server.herokuapp.com/logs",
         {
           item_name: itemNamem,
           color: color,
@@ -265,7 +264,7 @@ const EditTimeRecord = (props) => {
 
   const deleteRecord = () => {
     axios.delete(
-      "https://kiroku-server.herokuapp.com/timeLog/delete",
+      "https://kiroku-server.herokuapp.com/logs",
       {
         data: {
           id: editId

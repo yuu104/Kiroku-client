@@ -68,11 +68,9 @@ const StartAction = (props) => {
   const [startMinutes, setStartMinutes] = useState(alignment(props.time.getMinutes()));
 
   const [finishTimes, setFinishTimes] = useState([]);
-
   const dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`;
-
 useEffect(() => {
-  axios.get(`https://kiroku-server.herokuapp.com/timeLog/timeChart/${dateString}`, 
+  axios.get(`https://kiroku-server.herokuapp.com/logs/${dateString}`, 
     {
       headers: {accessToken: localStorage.getItem("accessToken")}
     }
@@ -93,7 +91,6 @@ useEffect(() => {
 
   const start = () => {
     const date = `${props.time.getFullYear()},${props.time.getMonth()+1},${props.time.getDate()},${startHours},${startMinutes}`
-
     finishTimes.sort((a, b) => {
       return (a < b ? 1 : -1);
     });
@@ -104,7 +101,7 @@ useEffect(() => {
       return;
     }
     
-    axios.post("https://kiroku-server.herokuapp.com/timeLog/start",
+    axios.post("https://kiroku-server.herokuapp.com/logs",
       {
         item_name: props.name,
         color: props.color,

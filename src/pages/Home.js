@@ -106,11 +106,12 @@ const Home = () => {
   let history = useHistory();
 
   useEffect(() => {
-    axios.get("https://kiroku-server.herokuapp.com/timeLog",
+    axios.get("https://kiroku-server.herokuapp.com/auth",
       {
         headers: {accessToken: localStorage.getItem("accessToken")}
       }
     ).then((res) => {
+      console.log(res.data.isInvalid);
       if (!res.data.isInvalid) history.push("/timeRecord");
     })
   }, [history]);

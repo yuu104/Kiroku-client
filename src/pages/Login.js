@@ -88,7 +88,7 @@ const Login = () => {
 
   const onSubmit = () => {
     const data = {username: username, password: password};
-    axios.post("https://kiroku-server.herokuapp.com/auth/login", data).then((res) => {
+    axios.post("https://kiroku-server.herokuapp.com/users/login", data).then((res) => {
       if (res.data.message === "該当するユーザーが見つかりません") {
         setIsUsername(false);
         setIspassword(true);

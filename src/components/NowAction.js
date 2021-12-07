@@ -73,9 +73,8 @@ const NowAction = (props) => {
     const minutes = stopTime.getMinutes();
     const newMinutes = minutes+2-(minutes+2)%5;
     const time = `${year},${month},${date},${hours},${newMinutes}`
-    axios.post("https://kiroku-server.herokuapp.com/timeLog/stop",
+    axios.patch(`https://kiroku-server.herokuapp.com/logs/${props.nowId}/stop`,
       {
-        id: props.nowId,
         finish_time: time
       },
       {

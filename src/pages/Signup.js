@@ -89,7 +89,7 @@ const Signup = () => {
   const [availability, setAvailability] = useState(true);
 
   const onSubmit = (data) => {
-    axios.post("https://kiroku-server.herokuapp.com/auth", data).then((res) => {
+    axios.post("https://kiroku-server.herokuapp.com/users/signup", data).then((res) => {
       if (res.data) {
         setAvailability(true);
         history.push('/timeRecord');
