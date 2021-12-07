@@ -30,7 +30,7 @@ const EditAdd = () => {
       alert("カラーが選択されていません。")
     } else {
       axios.post(
-        "https://kiroku-server.herokuapp.com/actions/add",
+        "https://kiroku-server.herokuapp.com/actions",
         {
           item_name: name,
           color: color,
