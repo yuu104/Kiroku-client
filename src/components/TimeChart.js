@@ -7,7 +7,7 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import "chart.js";
-import EditTimeRecord from "../pages/EditTimeRecord";
+import EditTimeLog from "../pages/EditTimeLog";
 import TimeLabel from "./TimeLabel";
 
 // styled-components →
@@ -29,7 +29,6 @@ const Container = styled.div`
     max-width: 550px;
     padding: 0;
     margin-top: 0;
-    //margin-left: 20px;
   }
   @media(min-width: 900px) and (min-height: 1000px) {
     width: 750px;
@@ -115,7 +114,6 @@ const NoDataTitle = styled.div`
   border: 2px solid #0d0d0d;
   border-radius: 50%;
 `;
-
 // ← styled-components
 
 const TimeChart = (props) => {
@@ -256,7 +254,6 @@ const TimeChart = (props) => {
       data: times,
       backgroundColor: backgroundColors,
       borderWidth: 0,
-      //borderColor: '#fff',
       datalabels: {
         labels: {
           data: {
@@ -291,7 +288,6 @@ const TimeChart = (props) => {
       data: totalTimes,
       backgroundColor: totalBackgroundColors,
       borderWidth: 0,
-      //borderColor: '#fff',
       datalabels: {
         labels: {
           data: {
@@ -303,7 +299,6 @@ const TimeChart = (props) => {
               let minutes = value - tmp;
               hour = ("0" + hour).slice(-2);
               minutes = ("0" + minutes).slice(-2);
-              //if (label === "空き時間") return null;
               return `${label}\n   ${hour}:${minutes}`;
             },
           },
@@ -405,7 +400,7 @@ const TimeChart = (props) => {
             </NoDataContainer>
           )
         ) : (
-          <EditTimeRecord
+          <EditTimeLog
             chartData={chartData}
             nowDay={props.nowDay}
             changeIsEditRecord={changeIsEditRecord}

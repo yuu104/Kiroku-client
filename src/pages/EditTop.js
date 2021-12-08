@@ -69,12 +69,12 @@ const EditTop = () => {
   return (
     <Overlay>
       <Container>
-        <CloseButton onClick={() => history.push("/timeRecord")} />
+        <CloseButton onClick={() => history.push("/time-log")} />
         <Title>アクションの編集</Title>
         <IconContainer>
-          <IconGrid onClick={(action) => history.push(`/EditAction/${action.id}`)} />
+          <IconGrid onClick={(action) => history.push(`/edit-action/${action.id}`)} />
         </IconContainer>
-        <Button onClick={() => history.push("/EditAdd")}> ＋ 新規アクション追加</Button>
+        <Button onClick={() => history.push("/edit-add")}> ＋ 新規アクション追加</Button>
       </Container>
     </Overlay>
   );

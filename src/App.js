@@ -5,7 +5,7 @@ import EditTop from "./pages/EditTop";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import TimeRecord from "./pages/TimeRecord";
+import TimeLog from "./pages/TimeLog";
 import EditAction from "./pages/EditAction";
 import './App.css'
 
@@ -32,12 +32,12 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/timeRecord" 
-            render={() => <TimeRecord nowDay={nowDay} changeDay={changeDay} />}
+          <Route path="/time-log" 
+            render={() => <TimeLog nowDay={nowDay} changeDay={changeDay} />}
           />
-          <Route path="/EditTop" exact component={EditTop} />
-          <Route path="/EditAdd" exact component={EditAdd} />
-          <Route path="/EditAction/:id" exact component={EditAction} />
+          <Route path="/edit-top" exact component={EditTop} />
+          <Route path="/edit-add" exact component={EditAdd} />
+          <Route path="/edit-action/:id" exact component={EditAction} />
         </Switch>
       </Router>
     </div>

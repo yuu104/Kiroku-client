@@ -1,4 +1,3 @@
-
 import styled from "styled-components";
 import Modal from "react-modal";
 import { useState } from "react";
@@ -136,7 +135,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
 `;
 // ← styled-components
 
-const EditTimeRecord = (props) => {
+const EditTimeLog = (props) => {
 
   let history = useHistory();
 
@@ -401,4 +400,4 @@ const EditTimeRecord = (props) => {
 
 }
 
-export default EditTimeRecord;
+export default EditTimeLog;

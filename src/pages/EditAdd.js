@@ -42,7 +42,7 @@ const EditAdd = () => {
         if (res.data.isInvalid) {
           history.push("/login");
         } else {
-          history.push("/EditTop");
+          history.push("/edit-top");
         }
       });
     }

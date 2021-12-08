@@ -92,7 +92,7 @@ const Signup = () => {
     axios.post("https://kiroku-server.herokuapp.com/users/signup", data).then((res) => {
       if (res.data) {
         setAvailability(true);
-        history.push('/timeRecord');
+        history.push('/time-log');
       } else {
         setAvailability(false);
       }
