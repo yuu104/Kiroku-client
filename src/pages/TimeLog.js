@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import {useHistory} from "react-router-dom";
-import Header from "../components/RecordHeader";
-//import Nav from "../components/Nav";
+import LogHeader from "../components/LogHeader";
 import TimeChart from "../components/TimeChart";
 import styled from "styled-components";
 import LetAction from "../components/LetAction";
@@ -120,12 +119,12 @@ const Button = styled.div`
 `;
 // ← styled-components
 
-const TimeRecord = (props) => {
+const TimeLog = (props) => {
 
   let history = useHistory();
 
   const [time, setTime] = useState();
-  const nowTime = () => {  
+  const nowTime = () => {
     const startTime = new Date();
     const year = startTime.getFullYear();
     const month = startTime.getMonth();
@@ -206,7 +205,7 @@ const TimeRecord = (props) => {
   return (
     <Container>
       <Content>
-        <Header nowDay={props.nowDay} changeDay={props.changeDay} />
+        <LogHeader nowDay={props.nowDay} changeDay={props.changeDay} />
         <FlexBox>
           <TimeChart
             nowDay={props.nowDay}
@@ -229,7 +228,7 @@ const TimeRecord = (props) => {
             <IconContainer>
               <IconGrid onClick={onClick} isMask={isMask} />
             </IconContainer>
-            <Button onClick={() => history.push("/EditTop")}>アクションの編集</Button>
+            <Button onClick={() => history.push("/edit-top")}>アクションの編集</Button>
           </ActionContainer>
         </FlexBox>
       </Content>
@@ -254,4 +253,4 @@ const TimeRecord = (props) => {
 
 }
 
-export default TimeRecord;
+export default TimeLog;

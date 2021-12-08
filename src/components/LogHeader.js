@@ -78,7 +78,7 @@ const LogoutIcon = styled(FontAwesomeIcon)`
 `;
 // ← styled-components
 
-const Header = (props) => {
+const LogHeader = (props) => {
 
   let history = useHistory();
 
@@ -137,4 +137,4 @@ const Header = (props) => {
 
 }
 
-export default Header;
+export default LogHeader;

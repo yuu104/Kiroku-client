@@ -96,9 +96,8 @@ const Login = () => {
         setIsUsername(true);
         setIspassword(false);
       } else if (res.data.auth) {
-        console.log(res);
         localStorage.setItem("accessToken", res.data.token);
-        history.push('/timeRecord');
+        history.push('/time-log');
       }
     }).catch((err) => {
       console.log("err:", err);

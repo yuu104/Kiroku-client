@@ -1,18 +1,17 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { Link as Scroll } from "react-scroll";
 import pieImg from "../images/pie.png";
-import top24h from "../images/top24h.png";
-import topTotal from "../images/topTotal.png";
-import startAction from "../images/startAction.png";
-import nowAction from "../images/nowAction.png";
-import editRecord from "../images/editRecord.png";
-import editAction from "../images/editAction.png";
+import top24hImg from "../images/top-24h.png";
+import topTotalImg from "../images/top-total.png";
+import startActionImg from "../images/start-action.png";
+import nowActionImg from "../images/now-action.png";
+import editLogImg from "../images/edit-log.png";
+import editActionImg from "../images/edit-action.png";
 import HomeHeader from "../components/HomeHeader";
 import Description from "../components/Description";
 
@@ -50,7 +49,6 @@ const PieImg = styled.img`
 const SubTitle = styled.p`
   color: rgb(0, 0, 0, 0.5);
   font-size: 16px;
-  //font-weight: 600;
   margin-top: 30px;
   @media (min-width: 600px) {
     font-size: 20px;
@@ -111,14 +109,13 @@ const Home = () => {
         headers: {accessToken: localStorage.getItem("accessToken")}
       }
     ).then((res) => {
-      console.log(res.data.isInvalid);
-      if (!res.data.isInvalid) history.push("/timeRecord");
-    })
+      if (!res.data.isInvalid) history.push("/time-log");
+    });
   }, [history]);
 
   return (
     <>
-      <HomeHeader />
+      <HomeHeader/>
       <Container>
         {/* <Title>Kiroku</Title> */}
         <TitleBox>
@@ -133,15 +130,11 @@ const Home = () => {
             <ArrowBtn icon={faChevronDown} />
           </ArrowBtnContainer>
         </TitleBox>
-        {/* <ButtonContainer>
-          <Button to="/login">ログイン</Button>
-          <Button to="/signup">サインアップ</Button>
-        </ButtonContainer> */}
         <DescContainer id='desc1'>
           <Description
             title="円グラフで行動記録を見やすく"
-            img1={top24h}
-            img2={topTotal}
+            img1={top24hImg}
+            img2={topTotalImg}
             desc="1日の行動記録が円グラフで表示されます。時間を順に表示したグラフと行動ごとに合計時間を自動計算したグラフの2種類で切り替え可能です。"
           />
           <ArrowBtnContainer to='desc2' smooth={true} duration={600} offset={-70}>
@@ -151,8 +144,8 @@ const Home = () => {
         <DescContainer id='desc2'>
           <Description
             title="記録方法は簡単です"
-            img1={startAction}
-            img2={nowAction}
+            img1={startActionImg}
+            img2={nowActionImg}
             desc={`画面下側にある、登録されたアクションのアイコンから選択し、開始時間を確認してください。開始ボタンを押すと記録が開始され、現在進行中のアクションが表示されます。\n記録を停止したい場合は「実行中アクション」の右側にある停止アイコンを押してください。`}
           />
           <ArrowBtnContainer to='desc3' smooth={true} duration={600} offset={-70}>
@@ -162,8 +155,8 @@ const Home = () => {
         <DescContainer id='desc3'>
           <Description
             title="記録とアクションの編集"
-            img1={editRecord}
-            img2={editAction}
+            img1={editLogImg}
+            img2={editActionImg}
             desc={`左は1日の行動記録を追加・編集・削除できる画面です。編集または削除を行う際は、該当する項目を選択してください。\n右は登録されているアクションを追加・編集・削除できる画面です。`}
           />
         </DescContainer>

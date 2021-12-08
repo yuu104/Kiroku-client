@@ -36,7 +36,7 @@ const EditAction = () => {
           color: color,
         }
       ).then((res) => {
-        history.push("/EditTop");
+        history.push("/edit-top");
       });
     }
   }

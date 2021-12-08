@@ -215,7 +215,7 @@ const EditActionAdd = (props) => {
         }
       }
     ).then((res) => {
-      history.push("/EditTop");
+      history.push("/edit-top");
     });
   }
 

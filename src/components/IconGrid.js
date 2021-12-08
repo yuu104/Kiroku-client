@@ -51,7 +51,6 @@ const IconGrid = (props) => {
   return (
 
     actions.map((action) => {
-      //if (action.id === props.focusKey) console.log("true");
       return (
         <Icon
           key={action.id}
