@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
-import IconGrid from "../components/IconGrid";
+import CloseButton from "../../components/CloseButton";
+import IconGrid from "../../components/IconGrid";
 
 // styled-components → 
 const Overlay = styled.div`

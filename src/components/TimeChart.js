@@ -7,7 +7,7 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import "chart.js";
-import EditTimeLog from "../pages/EditTimeLog";
+import EditTimeLog from "../components/EditTimeLog";
 import TimeLabel from "./TimeLabel";
 
 // styled-components →

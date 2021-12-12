@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import {useHistory} from "react-router-dom";
-import LogHeader from "../components/LogHeader";
-import TimeChart from "../components/TimeChart";
+import LogHeader from "../../components/LogHeader";
+import TimeChart from "../../components/TimeChart";
 import styled from "styled-components";
-import LetAction from "../components/LetAction";
+import LetAction from "../../components/LetAction";
 import axios from "axios";
-import StartAction from "../components/StartAction";
-import NowAction from "../components/NowAction";
-import IconGrid from "../components/IconGrid";
+import StartAction from "../../components/StartAction";
+import NowAction from "../../components/NowAction";
+import IconGrid from "../../components/IconGrid";
 
 // → styled-components
 const Container = styled.div`

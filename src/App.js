@@ -1,12 +1,12 @@
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { useState } from "react";
-import AddAction from "./pages/AddAction";
-import EditActionTop from "./pages/EditActionTop";
+import AddAction from "./pages/timeLogs/AddAction";
+import EditActionTop from "./pages/timeLogs/EditActionTop";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import TimeLog from "./pages/TimeLog";
-import EditAction from "./pages/EditAction";
+import TimeLog from "./pages/timeLogs/TimeLog";
+import EditAction from "./pages/timeLogs/EditAction";
 import './App.css'
 
 function App() {

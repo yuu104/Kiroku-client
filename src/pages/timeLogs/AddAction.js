@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {useHistory} from "react-router-dom"
 import axios from "axios";
-import EditActionForm from "../components/EditActionForm";
+import EditActionForm from "../../components/EditActionForm";
 
 const AddAction = () => {
 
