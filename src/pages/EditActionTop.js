@@ -62,7 +62,7 @@ const Button = styled.div`
 `;
 // ← styled-components
 
-const EditTop = () => {
+const EditActionTop = () => {
 
   let history = useHistory();
 
@@ -81,4 +81,4 @@ const EditTop = () => {
 
 }
 
-export default EditTop;
+export default EditActionTop;

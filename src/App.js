@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import { useState } from "react";
-import EditAdd from "./pages/EditAdd";
-import EditTop from "./pages/EditTop";
+import AddAction from "./pages/AddAction";
+import EditActionTop from "./pages/EditActionTop";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -32,11 +32,11 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/time-log" 
+          <Route path="/time-log"
             render={() => <TimeLog nowDay={nowDay} changeDay={changeDay} />}
           />
-          <Route path="/edit-top" exact component={EditTop} />
-          <Route path="/edit-add" exact component={EditAdd} />
+          <Route path="/edit-top" exact component={EditActionTop} />
+          <Route path="/edit-add" exact component={AddAction} />
           <Route path="/edit-action/:id" exact component={EditAction} />
         </Switch>
       </Router>

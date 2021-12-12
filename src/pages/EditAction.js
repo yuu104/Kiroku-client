@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import axios from "axios";
-import EditActionAdd from "../components/EditActionAdd";
+import EditActionForm from "../components/EditActionForm";
 
 const EditAction = () => {
 
@@ -50,7 +50,7 @@ const EditAction = () => {
   }, [id]);
 
   return (
-    <EditActionAdd
+    <EditActionForm
       id={id}
       name={name}
       color={color}

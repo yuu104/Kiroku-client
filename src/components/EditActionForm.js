@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
+import CloseButton from "./CloseButton";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
@@ -129,7 +129,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
 `;
 // ← styled-components
 
-const EditActionAdd = (props) => {
+const EditActionForm = (props) => {
 
   let history = useHistory();
 
@@ -284,4 +284,4 @@ const EditActionAdd = (props) => {
 
 }
 
-export default EditActionAdd;
+export default EditActionForm;
