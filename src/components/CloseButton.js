@@ -17,13 +17,16 @@ const Container = styled.div`
     background-color: rgb(0, 0, 0, 0.1);
   }
 `;
+const CloseIcon = styled(FontAwesomeIcon)`
+  font-size: 17px;
+`;
 // → styled-components
 
 const CloseButton = (props) => {
 
   return (
     <Container onClick={props.onClick}>
-      <FontAwesomeIcon icon={faTimes} />
+      <CloseIcon icon={faTimes} />
     </Container>
   );
 

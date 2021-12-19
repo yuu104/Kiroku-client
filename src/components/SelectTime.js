@@ -7,12 +7,12 @@ const InpBox = styled.div`
 `;
 
 const InpTitle = styled.div`
-  color: #0d0d0d;
+  color: rgb(55, 53, 47);
   font-size: 15px;
 `;
 
 const SelectBox = styled.div`
-  border: 2px solid #0d0d0d;
+  border: 1px solid rgba(55, 53, 47, 0.16);
   width: 100%;
   height: 50px;
   box-sizing: border-box;

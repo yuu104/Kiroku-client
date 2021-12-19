@@ -54,8 +54,9 @@ const EditIcon = styled(FontAwesomeIcon)`
   top: 0;
   cursor: pointer;
   z-index: 20;
+  opacity: 0.7;
   &:hover {
-    opacity: 0.8;
+    opacity: 1;
   }
 `;
 const ToggleBox = styled.div`
@@ -111,7 +112,7 @@ const NoDataTitle = styled.div`
   align-items: center;
   justify-content: center;
   font-size: 20px;
-  border: 2px solid #0d0d0d;
+  border: 2px solid rgb(55, 53, 47);
   border-radius: 50%;
 `;
 // ← styled-components

@@ -5,6 +5,9 @@ import IconGrid from "../../components/IconGrid";
 
 // styled-components → 
 const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 40;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,15 +17,16 @@ const Overlay = styled.div`
 `;
 
 const Container = styled.div`
-  width: 95%;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   background-color: #ffff;
-  border-radius: 5px;
-  padding: 20px;
+  padding: 60px 20px;
   box-sizing: border-box;
   @media(min-width: 600px) {
     width: 400px;
     height: 600px;
+    border-radius: 5px;
+    padding: 30px;
   }
 `;
 
@@ -52,17 +56,18 @@ const Button = styled.div`
   align-items: center;
   width: 200px;
   padding: 10px 0;
-  color: #fff;
-  background-color: #0d0d0d;
+  background-color: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 5px;
   margin: 40px auto 0 auto;
   cursor: pointer;
   &:hover {
-    opacity: 0.8;
+    background-color: rgba(55, 53, 47, 0.05);
   }
 `;
 // ← styled-components
 
-const EditActionTop = () => {
+const EditActionTop = (props) => {
 
   let history = useHistory();
 
@@ -72,9 +77,9 @@ const EditActionTop = () => {
         <CloseButton onClick={() => history.push("/time-log")} />
         <Title>アクションの編集</Title>
         <IconContainer>
-          <IconGrid onClick={(action) => history.push(`/edit-action/${action.id}`)} />
+          <IconGrid onClick={(action) => history.push(`/time-log/edit-actions/edit/${action.id}`)} />
         </IconContainer>
-        <Button onClick={() => history.push("/edit-add")}> ＋ 新規アクション追加</Button>
+        <Button onClick={() => history.push("/time-log/edit-actions/add")}> ＋ 新規アクション追加</Button>
       </Container>
     </Overlay>
   );

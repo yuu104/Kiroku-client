@@ -4,6 +4,11 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+h1, h2, h3, p, div {
+  color: rgb(55,53,47);
+  border-color: rgb(55,53,47);
+}
+
 .editRecordModalOverlay {
   position: fixed;
   top: 0;

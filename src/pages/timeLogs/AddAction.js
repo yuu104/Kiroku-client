@@ -3,7 +3,7 @@ import {useHistory} from "react-router-dom"
 import axios from "axios";
 import EditActionForm from "../../components/EditActionForm";
 
-const AddAction = () => {
+const AddAction = (props) => {
 
   let history = useHistory();
 
@@ -42,7 +42,8 @@ const AddAction = () => {
         if (res.data.isInvalid) {
           history.push("/login");
         } else {
-          history.push("/edit-top");
+          props.changeForceRender();
+          history.push("/time-log/edit-actions/top");
         }
       });
     }

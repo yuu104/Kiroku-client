@@ -36,18 +36,17 @@ const ActionName = styled.h2`
 `;
 
 const Button = styled.div`
-  border: 2px solid #0d0d0d;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 5px;
   cursor: pointer;
   width: 120px;
   text-align: center;
   font-size: 15px;
   padding: 10px 0;
   margin: 30px auto 0 auto;
-  font-weight: 600;
-  color: #fff;
-  background-color: #0d0d0d;
+  background-color: #fff;
   &:hover {
-    opacity: 0.8;
+    background-color: rgba(55, 53, 47, 0.16);
   }
 `;
 // ← styled-components
