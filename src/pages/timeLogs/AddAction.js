@@ -1,9 +1,9 @@
 import { useState } from "react";
 import {useHistory} from "react-router-dom"
 import axios from "axios";
-import EditActionAdd from "../components/EditActionAdd";
+import EditActionForm from "../../components/EditActionForm";
 
-const EditAdd = () => {
+const AddAction = (props) => {
 
   let history = useHistory();
 
@@ -23,7 +23,7 @@ const EditAdd = () => {
   }
 
 
-  const AddAction = () => {
+  const add = () => {
     if (name === "") {
       alert("アクション名が入力されていません。");
     } else if (color === "") {
@@ -42,16 +42,17 @@ const EditAdd = () => {
         if (res.data.isInvalid) {
           history.push("/login");
         } else {
-          history.push("/edit-top");
+          props.changeForceRender();
+          history.push("/time-log/edit-actions/top");
         }
       });
     }
   }
 
   return (
-    <EditActionAdd
+    <EditActionForm
       focusKey={focusKey}
-      onClick={AddAction}
+      onClick={add}
       changeName={changeName}
       changeFocusKey={changeFocusKey}
       changeColor={changeColor}
@@ -63,4 +64,4 @@ const EditAdd = () => {
 
 }
 
-export default EditAdd;
+export default AddAction;

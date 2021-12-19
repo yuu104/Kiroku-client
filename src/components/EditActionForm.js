@@ -1,10 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import CloseButton from "../components/CloseButton";
 import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faTrashAlt, faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import ChoiceModal from "./ChoiceModal";
 import axios from "axios";
 
@@ -13,6 +12,9 @@ Modal.setAppElement("#root");
 
 // styled-components →
 const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  z-index: 40;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -26,7 +28,7 @@ const NameLabel = styled.label`
 `;
 const NameInp = styled.input`
   border: none;
-  border-bottom: 2px solid #0d0d0d;
+  border-bottom: 2px solid rgb(55, 53, 47);
   width: 90%;
   height: 40px;
   outline: none;
@@ -43,27 +45,45 @@ const UnderLine = styled.div`
   width: 90%;
   height: 4px;
   position: relative;
-  background-color: #0d0d0d;
+  background-color: rgb(55, 53, 47);
   top: -4px;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.25s ease-out;
 `;
 const Container = styled.div`
-  width: 95%;
-  height: 500px;
+  width: 100%;
+  height: 100%;
   background-color: #ffff;
-  border-radius: 5px;
-  padding: 20px 30px;
+  padding: 50px 30px;
   box-sizing: border-box;
   overflow: scroll;
   ${NameInp}:focus + ${UnderLine} {
     transform: scaleX(1);
   }
   @media(min-width: 600px) {
+    padding-top: 20px;
     width: 400px;
     height: 600px;
+    border-radius: 5px;
   }
+`;
+const BackBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  opacity: 0.6;
+  &:hover {
+    //background-color: rgba(0, 0, 0, 0.1);
+    opacity: 1;
+  }
+`;
+const BackIcon = styled(FontAwesomeIcon)`
+  font-size: 22px;
 `;
 const ColorLabel = styled.label`
   display: block;
@@ -77,7 +97,7 @@ const ColorContainer = styled.div`
   height: 200px;
   max-height: 200px;
   overflow: scroll;
-  border: 2px solid #0d0d0d;
+  border: 2px solid rgb(55, 53, 47);
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 50px);
@@ -92,7 +112,7 @@ const ColorItem = styled.div`
   height: 50px;
   background-color: ${props => props.color};
   border-radius: 5px;
-  border: ${props => props.color === props.focusKey ? '2px solid #0d0d0d' : 'none'};
+  border: ${props => props.color === props.focusKey ? '2px solid rgb(55, 53, 47)' : 'none'};
 `;
 const ButtonContainer = styled.div`
   margin: 30px 0;
@@ -106,11 +126,12 @@ const Button = styled.div`
   align-items: center;
   width: 100px;
   padding: 5px 0;
-  color: #ffff;
-  background-color: #0d0d0d;
+  background-color: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 5px;
   cursor: pointer;
   &:hover {
-    opacity: 0.8;
+    background-color: rgba(55, 53, 47, 0.05);
   }
 `;
 const DeleteButton = styled.div`
@@ -118,10 +139,13 @@ const DeleteButton = styled.div`
   right: 20px;
   width: 30px;
   height: 30px;
-  color: #0d0d0d;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
 `;
 const DeleteIcon = styled(FontAwesomeIcon)` 
   font-size: 30px;
@@ -129,7 +153,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
 `;
 // ← styled-components
 
-const EditActionAdd = (props) => {
+const EditActionForm = (props) => {
 
   let history = useHistory();
 
@@ -215,7 +239,8 @@ const EditActionAdd = (props) => {
         }
       }
     ).then((res) => {
-      history.push("/edit-top");
+      props.changeForceRender();
+      history.push("/time-log/edit-actions/top");
     });
   }
 
@@ -227,7 +252,10 @@ const EditActionAdd = (props) => {
   return (
     <Overlay>
       <Container>
-        <CloseButton onClick={() => history.goBack()} />
+        {/* <CloseButton onClick={() => history.goBack()} /> */}
+        <BackBtn onClick={() => history.goBack()}>
+          <BackIcon icon={faAngleDoubleLeft}></BackIcon>
+        </BackBtn>
         <h2>{props.title}</h2>
         <NameLabel>アクション名</NameLabel>
         <NameInp
@@ -284,4 +312,4 @@ const EditActionAdd = (props) => {
 
 }
 
-export default EditActionAdd;
+export default EditActionForm;

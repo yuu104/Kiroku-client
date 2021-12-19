@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import {useHistory} from "react-router-dom";
-import LogHeader from "../components/LogHeader";
-import TimeChart from "../components/TimeChart";
+import LogHeader from "../../components/LogHeader";
+import TimeChart from "../../components/TimeChart";
 import styled from "styled-components";
-import LetAction from "../components/LetAction";
+import LetAction from "../../components/LetAction";
 import axios from "axios";
-import StartAction from "../components/StartAction";
-import NowAction from "../components/NowAction";
-import IconGrid from "../components/IconGrid";
+import StartAction from "../../components/StartAction";
+import NowAction from "../../components/NowAction";
+import IconGrid from "../../components/IconGrid";
 
 // → styled-components
 const Container = styled.div`
@@ -90,8 +90,9 @@ const IconContainer = styled.div`
   }
 `;
 const Button = styled.div`
-  color: #fff;
-  background-color: #0d0d0d;
+  background-color: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 5px;
   width: 140px;
   height: 35px;
   font-size: 13px;
@@ -102,7 +103,7 @@ const Button = styled.div`
   align-items: center;
   cursor: pointer;
   &:hover{
-    opacity: 0.8;
+    background-color: rgba(55, 53, 47, 0.05);
   }
   @media(min-width: 420px) {
     margin-top: 30px;
@@ -226,9 +227,13 @@ const TimeLog = (props) => {
               )
             }
             <IconContainer>
-              <IconGrid onClick={onClick} isMask={isMask} />
+              <IconGrid 
+                onClick={onClick} 
+                isMask={isMask} 
+                forceRender={props.forceRender} 
+              />
             </IconContainer>
-            <Button onClick={() => history.push("/edit-top")}>アクションの編集</Button>
+            <Button onClick={() => history.push("/time-log/edit-actions/top")}>アクションの編集</Button>
           </ActionContainer>
         </FlexBox>
       </Content>

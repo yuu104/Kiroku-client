@@ -22,7 +22,7 @@ const Button = styled.div`
   width: 95px;
   height: 35px;
   font-size: 15px;
-  border: 2px solid #0d0d0d;
+  border: 2px solid rgb(55, 53, 47);
   display: flex;
   justify-content: center;
   align-items: center;

@@ -10,7 +10,7 @@ const Icon = styled.div`
   border-radius: 5px;
   height: 50px;
   pointer-events: ${props => (props.isMask) ? 'none' : 'auto'};
-  border: ${props => (props.id === props.focusKey) ? "2px solid #0d0d0d" : "none"};
+  border: ${props => (props.id === props.focusKey) ? "2px solid rgb(55, 53, 47)" : "none"};
   @media (min-width: 600px) {
     height: 70px;
   }
@@ -46,7 +46,7 @@ const IconGrid = (props) => {
         setActions(res.data);
       }
     });
-  }, [history]);
+  }, [history, props.forceRender]);
 
   return (
 

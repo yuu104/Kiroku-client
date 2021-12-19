@@ -27,16 +27,22 @@ const TitleContainer = styled.div`
   align-items: center;
   padding-left: 10px;
 `;
+const BackBtn = styled.div`
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+  }
+`;
 const BackIcon = styled(FontAwesomeIcon)`
   font-size: 22px;
-  cursor: pointer;
-  color: #0d0d0d;
-  &:hover {
-    opacity: 0.8;
-  }
-  @media (min-width: 600px) {
-    font-size: 30px;
-  }
+  color: rgb(55, 53, 47);
 `;
 const Title = styled.h2`
   text-align: center;
@@ -65,23 +71,24 @@ const List = styled.li`
   margin-bottom: 5px;
   margin: 5px;
   background-color: #fff;
-  border: 2px solid #0d0d0d;
+  border-radius: 5px;
+  border: 1px solid rgba(55, 53, 47, 0.16);
   &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(55, 53, 47, 0.05);
   }
 `;
 const AddButton = styled.div`
-  color: #fff;
-  background-color: #0d0d0d;
+  background-color: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.16);
   width: 60px;
   text-align: center;
   padding: 7px 0;
-  border-radius: 10px;
+  border-radius: 5px;
   margin: 8px 0 0 auto;
   font-size: 13px;
   cursor: pointer;
   &:hover {
-    opacity: 0.8;
+    background-color: rgba(55, 53, 47, 0.05);
   }
 `;
 const AddModalTitle = styled.h2`
@@ -110,17 +117,17 @@ const ActionName = styled.h2`
   text-align: center;
 `;
 const Button = styled.div`
-  color: #fff;
-  background-color: #0d0d0d;
+  background-color: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  border-radius: 5px;
   cursor: pointer;
   width: 100px;
   margin: 30px auto 0 auto;
   text-align: center;
   font-size: 15px;
   padding: 8px 0;
-  font-weight: 600;
   &:hover{
-    opacity: 0.8;
+    background-color: rgba(55, 53, 47, 0.05)
   }
 `;
 const DeleteIcon = styled(FontAwesomeIcon)`
@@ -128,9 +135,10 @@ const DeleteIcon = styled(FontAwesomeIcon)`
   position: absolute;
   bottom: 55px;
   right: 55px;
+  opacity: 0.7;
   cursor: pointer;
   &:hover{
-    opacity: 0.8;
+    opacity: 1;
   }
 `;
 // ← styled-components
@@ -279,11 +287,10 @@ const EditTimeLog = (props) => {
   return (
     <Container>
       <TitleContainer>
-        <BackIcon
-          icon={faAngleDoubleLeft}
-          onClick={() => props.changeIsEditRecord(false)}
-        >
-        </BackIcon>
+        <BackBtn onClick={() => props.changeIsEditRecord(false)}>
+          <BackIcon icon={faAngleDoubleLeft}>
+          </BackIcon>
+        </BackBtn>
         <Title>記録の編集</Title>
       </TitleContainer>
       <Ul>

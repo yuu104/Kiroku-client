@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Element = styled.div`
   display: inline-block;
-  border-bottom: 2px solid #000000;
+  border-bottom: 2px solid rgb(55,53,47);
   width: 250px;
   font-size: 15px;
   padding-bottom: 5px;
