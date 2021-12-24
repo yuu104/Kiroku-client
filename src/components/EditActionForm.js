@@ -239,7 +239,7 @@ const EditActionForm = (props) => {
         }
       }
     ).then((res) => {
-      props.changeForceRender();
+      props.changeForce();
       history.push("/time-log/edit-actions/top");
     });
   }

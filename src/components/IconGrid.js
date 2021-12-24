@@ -46,7 +46,7 @@ const IconGrid = (props) => {
         setActions(res.data);
       }
     });
-  }, [history, props.forceRender]);
+  }, [history, props.force]);
 
   return (
 

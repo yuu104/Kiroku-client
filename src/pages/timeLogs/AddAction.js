@@ -42,7 +42,7 @@ const AddAction = (props) => {
         if (res.data.isInvalid) {
           history.push("/login");
         } else {
-          props.changeForceRender();
+          props.changeForce();
           history.push("/time-log/edit-actions/top");
         }
       });

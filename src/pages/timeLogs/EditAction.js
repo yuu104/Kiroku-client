@@ -36,7 +36,7 @@ const EditAction = (props) => {
           color: color,
         }
       ).then((res) => {
-        props.changeForceRender();
+        props.changeForce();
         history.push("/time-log/edit-actions/top");
       });
     }
@@ -64,7 +64,7 @@ const EditAction = (props) => {
       buttonName="変更"
       boolean={true}
       isOpen={false}
-      changeForceRender={props.changeForceRender}
+      changeForce={props.changeForce}
     />
   );
 

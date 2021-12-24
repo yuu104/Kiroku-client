@@ -3,8 +3,9 @@ import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import TimeLog from "./pages/timeLogs/TimeLog";
 import './App.css'
-import TimeLogRouter from "./pages/TimeLogRouter";
+
 
 function App() {
 
@@ -30,7 +31,7 @@ function App() {
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/time-log" 
-            render={() => <TimeLogRouter nowDay={nowDay} changeDay={changeDay} /> }
+            render={() => <TimeLog nowDay={nowDay} changeDay={changeDay} /> }
           />
         </Switch>
       </Router>
