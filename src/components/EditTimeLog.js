@@ -404,7 +404,6 @@ const EditTimeLog = (props) => {
       />
     </Container>
   );
-
 }
 
 export default EditTimeLog;

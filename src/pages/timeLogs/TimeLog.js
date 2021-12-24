@@ -1,13 +1,17 @@
 import { useState, useEffect } from "react";
 import {useHistory} from "react-router-dom";
+import { Route } from "react-router-dom";
+import styled from "styled-components";
+import axios from "axios";
 import LogHeader from "../../components/LogHeader";
 import TimeChart from "../../components/TimeChart";
-import styled from "styled-components";
 import LetAction from "../../components/LetAction";
-import axios from "axios";
 import StartAction from "../../components/StartAction";
 import NowAction from "../../components/NowAction";
 import IconGrid from "../../components/IconGrid";
+import EditActionTop from "./EditActionTop";
+import EditAction from "./EditAction";
+import AddAction from "./AddAction";
 
 // → styled-components
 const Container = styled.div`
@@ -124,6 +128,11 @@ const TimeLog = (props) => {
 
   let history = useHistory();
 
+  const [force, setForce] = useState(true);
+  const changeForce = () => {
+    setForce(!force);
+  }
+
   const [time, setTime] = useState();
   const nowTime = () => {
     const startTime = new Date();
@@ -204,56 +213,67 @@ const TimeLog = (props) => {
   }
 
   return (
-    <Container>
-      <Content>
-        <LogHeader nowDay={props.nowDay} changeDay={props.changeDay} />
-        <FlexBox>
-          <TimeChart
-            nowDay={props.nowDay}
-            isDoing={isDoing}
-            changeRecordData={props.changeRecordData}
-          />
-          <ActionContainer>
-            {
-              isDoing ? (
-                <NowAction
-                  startAction={startAction}
-                  changeIsDoing={changeIsDoing}
-                  nowId={nowId}
-                  color={startActionColor}
+    <>
+      <Container>
+        <Content>
+          <LogHeader nowDay={props.nowDay} changeDay={props.changeDay} />
+          <FlexBox>
+            <TimeChart
+              nowDay={props.nowDay}
+              isDoing={isDoing}
+              changeRecordData={props.changeRecordData}
+            />
+            <ActionContainer>
+              {
+                isDoing ? (
+                  <NowAction
+                    startAction={startAction}
+                    changeIsDoing={changeIsDoing}
+                    nowId={nowId}
+                    color={startActionColor}
+                  />
+                ) : (
+                  <LetAction />
+                )
+              }
+              <IconContainer>
+                <IconGrid 
+                  onClick={onClick} 
+                  isMask={isMask} 
+                  force={force} 
                 />
-              ) : (
-                <LetAction />
-              )
-            }
-            <IconContainer>
-              <IconGrid 
-                onClick={onClick} 
-                isMask={isMask} 
-                forceRender={props.forceRender} 
-              />
-            </IconContainer>
-            <Button onClick={() => history.push("/time-log/edit-actions/top")}>アクションの編集</Button>
-          </ActionContainer>
-        </FlexBox>
-      </Content>
-      {/* <Nav /> */}
-      {
-        isOpen ? (
-          <StartAction
-            time={time}
-            name={startAction}
-            color={startActionColor}
-            changeIsOpen={changeIsOpen}
-            changeIsDoing={changeIsDoing}
-            changeNowId={changeNowId}
-            nowDay={props.nowDay}
-          />
-        ) : (
-          null
-        )
-      }
-    </Container>
+              </IconContainer>
+              <Button onClick={() => history.push("/time-log/edit-actions/top")}>アクションの編集</Button>
+            </ActionContainer>
+          </FlexBox>
+        </Content>
+        {
+          isOpen ? (
+            <StartAction
+              time={time}
+              name={startAction}
+              color={startActionColor}
+              changeIsOpen={changeIsOpen}
+              changeIsDoing={changeIsDoing}
+              changeNowId={changeNowId}
+              nowDay={props.nowDay}
+            />
+          ) : (
+            null
+          )
+        }
+      </Container>
+
+      <Route path="/time-log/edit-actions/top" component={EditActionTop} />
+      <Route 
+        path="/time-log/edit-actions/edit/:id" 
+        render={() => <EditAction changeForce={changeForce} />}
+      />
+      <Route 
+        path="/time-log/edit-actions/add" 
+        render={() => <AddAction changeForce={changeForce} />}
+      />
+    </>
   );
 
 }
