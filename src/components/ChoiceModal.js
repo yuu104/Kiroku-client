@@ -1,8 +1,25 @@
-import Modal from "react-modal";
 import styled from "styled-components";
 import ActionIcon from "./ActionIcon";
 
 // styled-components →
+const Overlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 40;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+`;
+const Container = styled.div`
+  width: 300px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+`;
 const Title = styled.h3`
   font-size: 18px;
   text-align: center;
@@ -34,33 +51,28 @@ const Button = styled.div`
 `;
 // ← styled-components
 
-Modal.setAppElement("#root");
-
 const ChoiceModal = (props) => {
 
   return(
-    <Modal
-      isOpen={props.isOpen}
-      className="modalContent"
-      overlayClassName="modalOverlay"
-    >
-      <Title>{props.title}</Title>
-      {
-        props.isIcon ? (
-          <Icon>
-            <ActionIcon name={props.name} color={props.color} />
-          </Icon>
-        ) : (
-          null
-        )
-      }
-      <ButtonContainer>
-        <Button onClick={props.cancel}>{props.no}</Button>
-        <Button onClick={props.yesEvent}>{props.yes}</Button>
-      </ButtonContainer>
-    </Modal>
+    props.isOpen ? (
+      <Overlay>
+        <Container>
+          <Title>{props.title}</Title>
+          {
+            props.isIcon ? (
+              <Icon>
+                <ActionIcon name={props.name} color={props.color} />
+              </Icon>
+            ) : null
+          }
+          <ButtonContainer>
+              <Button onClick={props.cancel}>{props.no}</Button>
+              <Button onClick={props.yesEvent}>{props.yes}</Button>
+          </ButtonContainer>
+        </Container>
+      </Overlay>
+    ) : null
   )
-
 }
 
 export default ChoiceModal;
