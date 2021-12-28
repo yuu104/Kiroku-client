@@ -203,7 +203,7 @@ const TimeLog = (props) => {
     } else {
       setIsMask(false);
     }
-  }, [isDoing, isToday])
+  }, [isDoing, isToday]);
 
   const onClick = (action) => {
     nowTime();

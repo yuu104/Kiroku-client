@@ -6,7 +6,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faAngleLeft, faSignOutAlt } from "@fortawesome/free-solid-svg-icons"
 import DateFnsUtils from '@date-io/date-fns';
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ChoiceModal from "./ChoiceModal";
 
@@ -78,7 +78,7 @@ const LogoutIcon = styled(FontAwesomeIcon)`
 `;
 // ← styled-components
 
-const LogHeader = (props) => {
+const LogHeader = memo((props) => {
 
   let history = useHistory();
 
@@ -134,7 +134,6 @@ const LogHeader = (props) => {
       />
     </>
   );
-
-}
+})
 
 export default LogHeader;

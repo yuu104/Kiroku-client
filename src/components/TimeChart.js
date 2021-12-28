@@ -1,7 +1,7 @@
 import {Pie} from "react-chartjs-2";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -118,7 +118,7 @@ const NoDataTitle = styled.div`
 `;
 // ← styled-components
 
-const TimeChart = (props) => {
+const TimeChart = memo((props) => {
 
   let history = useHistory();
 
@@ -422,6 +422,6 @@ const TimeChart = (props) => {
       />
     </>
   );
-}
+});
 
 export default TimeChart;
