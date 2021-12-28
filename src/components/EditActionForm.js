@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import Modal from "react-modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt, faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
 import ChoiceModal from "./ChoiceModal";
 import axios from "axios";
-
-Modal.setAppElement("#root");
-
 
 // styled-components →
 const Overlay = styled.div`
@@ -75,10 +71,8 @@ const BackBtn = styled.div`
   cursor: pointer;
   width: 30px;
   height: 30px;
-  border-radius: 10px;
   opacity: 0.6;
   &:hover {
-    //background-color: rgba(0, 0, 0, 0.1);
     opacity: 1;
   }
 `;
@@ -252,7 +246,6 @@ const EditActionForm = (props) => {
   return (
     <Overlay>
       <Container>
-        {/* <CloseButton onClick={() => history.goBack()} /> */}
         <BackBtn onClick={() => history.goBack()}>
           <BackIcon icon={faAngleDoubleLeft}></BackIcon>
         </BackBtn>

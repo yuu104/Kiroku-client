@@ -2,12 +2,13 @@ import {Pie} from "react-chartjs-2";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
+import { Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import "chart.js";
-import EditTimeLog from "../components/EditTimeLog";
+import EditTimeLog from "../pages/timeLogs/EditTimeLog";
 import TimeLabel from "./TimeLabel";
 
 // styled-components →
@@ -121,9 +122,9 @@ const TimeChart = (props) => {
 
   let history = useHistory();
 
-  const [db, setDb] = useState(true);
-  const changeDb = () => {
-    setDb(!db);
+  const [force, setForce] = useState(true);
+  const changeForce = () => {
+    setForce(!force);
   }
 
   const [display, setDisplay] = useState('24h');
@@ -153,7 +154,7 @@ const TimeChart = (props) => {
         setChartData(tmp);
       }
     });
-  }, [dateString, db, props.isDoing, history]);
+  }, [dateString, force, props.isDoing, history]);
 
   const totalChartData = [];
 
@@ -323,19 +324,13 @@ const TimeChart = (props) => {
       legend: {
         display: false
       },
-    },
-    
-  }
-
-  const [isEditRecord, setIsEditRecord] = useState(false);
-  const changeIsEditRecord = (boolean) => {
-    setIsEditRecord(boolean);
+    }
   }
 
   return (
-    <Container>
-      {
-        !isEditRecord ? (
+    <>
+      <Container>
+        {
           times.length !== 0 ? (
             display === '24h' ? (
               <>
@@ -348,7 +343,11 @@ const TimeChart = (props) => {
                 <TimeLabelContainer>
                   <TimeLabel />
                 </TimeLabelContainer>
-                <EditIcon icon={faEdit} onClick={() => setIsEditRecord(true)}></EditIcon>
+                <EditIcon
+                  icon={faEdit} 
+                  onClick={() => history.push("/time-log/edit-log/top")}
+                >
+                </EditIcon>
                 <ToggleBox>
                   <ToggleButton
                     className="border"
@@ -374,7 +373,11 @@ const TimeChart = (props) => {
                   plugins={[ChartDataLabels]}
                   options={options}
                 />
-                <EditIcon icon={faEdit} onClick={() => setIsEditRecord(true)}></EditIcon>
+                <EditIcon
+                  icon={faEdit} 
+                  onClick={() => history.push("/time-log/edit-log/top")}
+                >
+                </EditIcon>
                 <ToggleBox>
                   <ToggleButton
                     className="border"
@@ -397,21 +400,28 @@ const TimeChart = (props) => {
           ) : (
             <NoDataContainer>
               <NoDataTitle>データがありません</NoDataTitle>
-              <EditIcon icon={faEdit} onClick={() => setIsEditRecord(true)}></EditIcon>
+              <EditIcon
+                icon={faEdit}
+                onClick={() => history.push("/time-log/edit-log/top")}
+              >
+              </EditIcon>
             </NoDataContainer>
           )
-        ) : (
+        }
+      </Container>
+
+      <Route
+        path="/time-log/edit-log"
+        render={() => 
           <EditTimeLog
             chartData={chartData}
             nowDay={props.nowDay}
-            changeIsEditRecord={changeIsEditRecord}
-            changeDb={changeDb}
+            changeForce={changeForce}
           />
-        )
-      }
-    </Container>
+        }
+      />
+    </>
   );
-
 }
 
 export default TimeChart;
