@@ -1,7 +1,7 @@
 import {Pie} from "react-chartjs-2";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, useCallback } from "react";
 import { Route } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +10,7 @@ import ChartDataLabels from 'chartjs-plugin-datalabels';
 import "chart.js";
 import EditTimeLog from "../pages/timeLogs/EditTimeLog";
 import TimeLabel from "./TimeLabel";
+import ToggleButton from "./ToggleButton";
 
 // styled-components →
 const Container = styled.div`
@@ -64,34 +65,10 @@ const ToggleBox = styled.div`
   position: absolute;
   top: -10px;
   right: -15px;
-  display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 5px;
   z-index: 20;
+  border-radius: 5px;
   @media (min-width: 600px) {
     right: -50px;
-  }
-`;
-const ToggleButton = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 30px;
-  font-size: 10px;
-  font-weight: 600;
-  color: ${props => props.content === props.display ? '#42A5F5' : 'rgba(0, 0, 0, 0.54)'};
-  background-color: ${props => props.content === props.display ? 'rgba(66,165,245,0.1)' : '#fff'};
-  text-align: center;
-  cursor: pointer;
-  border-radius: ${props => props.content === '24h' ? '5px 0 0 5px' : '0 5px 5px 0'};
-  &:hover {
-    background-color: ${props => props.content === props.display ? 'rgba(11,114,192,0.1)' : 'rgba(0, 0, 0, 0.05)'};
-  }
-  @media (min-width: 600px) {
-    font-size: 12px;
-    width: 65px;
-    height: 40px;
   }
 `;
 const NoDataContainer = styled.div`
@@ -128,6 +105,9 @@ const TimeChart = memo((props) => {
   }
 
   const [display, setDisplay] = useState('24h');
+  const changeDisplay = useCallback((newDisplay) => {
+      setDisplay(newDisplay);
+    },[]);
 
   let dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`;
 
@@ -350,20 +330,12 @@ const TimeChart = memo((props) => {
                 </EditIcon>
                 <ToggleBox>
                   <ToggleButton
-                    className="border"
                     display={display}
-                    content="24h"
-                    onClick={() => setDisplay('24h')}
-                  >
-                    24h
-                  </ToggleButton>
-                  <ToggleButton
-                    display={display}
-                    content="TOTAL"
-                    onClick={() => setDisplay('TOTAL')}
-                  >
-                    TOTAL
-                  </ToggleButton>
+                    leftContent='24h'
+                    rightContent='TOTAL'
+                    nowContent='24h'
+                    changeDisplay={changeDisplay}
+                  />
                 </ToggleBox>
               </>
             ) : (
@@ -380,20 +352,12 @@ const TimeChart = memo((props) => {
                 </EditIcon>
                 <ToggleBox>
                   <ToggleButton
-                    className="border"
                     display={display}
-                    content="24h"
-                    onClick={() => setDisplay('24h')}
-                  >
-                    24h
-                  </ToggleButton>
-                  <ToggleButton
-                    display={display}
-                    content="TOTAL"
-                    onClick={() => setDisplay('TOTAL')}
-                  >
-                    TOTAL
-                  </ToggleButton>
+                    leftContent='24h'
+                    rightContent='TOTAL'
+                    nowContent='TOTAL'
+                    changeDisplay={changeDisplay}
+                  />
                 </ToggleBox>
               </>
             )
