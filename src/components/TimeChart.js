@@ -140,7 +140,6 @@ const TimeChart = memo((props) => {
 
   if (chartData.length !== 0) {
     chartData.sort((a, b) => a.start_time - b.start_time);
-
     // アクションの開始日と終了日が異なっているときの処理 →
     if (
       chartData[0].start_time.getDate() !== chartData[0].finish_time.getDate()
@@ -318,7 +317,7 @@ const TimeChart = memo((props) => {
                   data={data}
                   plugins={[ChartDataLabels]}
                   options={options}
-                  className="chart24"
+                  //className="chart24"
                 />
                 <TimeLabelContainer>
                   <TimeLabel />
