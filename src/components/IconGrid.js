@@ -71,7 +71,6 @@ const IconGrid = (props) => {
       )
     })
   );
-
 }
 
 export default IconGrid;
