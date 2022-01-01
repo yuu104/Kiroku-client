@@ -131,7 +131,7 @@ const TimeLog = (props) => {
 
   const [force, setForce] = useState(true);
   const changeForce = () => {
-    setForce(!force);
+    setForce(prev => !prev);
   }
 
   const [isStopLog, setIsStopLog] = useState(false);
@@ -153,14 +153,14 @@ const TimeLog = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const changeIsOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   }
   const [startAction, setStartAction] = useState("");
   const [startActionColor, setStartActionColor] = useState("");
 
   const [isDoing, setIsDoing] = useState();
   const changeIsDoing = () => {
-    setIsDoing(!isDoing);
+    setIsDoing(prev => !prev);
   }
 
   useEffect(() => {
@@ -207,7 +207,7 @@ const TimeLog = (props) => {
 
   const onClick = (action) => {
     nowTime();
-    setIsOpen(!isOpen);
+    changeIsOpen();
     setStartAction(action.item_name);
     setStartActionColor(action.color);
   }

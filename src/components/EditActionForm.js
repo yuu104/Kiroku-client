@@ -240,7 +240,7 @@ const EditActionForm = (props) => {
 
   const [isOpen, setIsOpen] = useState(props.isOpen);
   const changeIsOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   }
 
   return (
