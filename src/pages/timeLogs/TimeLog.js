@@ -12,6 +12,7 @@ import IconGrid from "../../components/IconGrid";
 import EditActionTop from "./EditActionTop";
 import EditAction from "./EditAction";
 import AddAction from "./AddAction";
+import StopLog from "../../components/StopLog";
 
 // → styled-components
 const Container = styled.div`
@@ -133,6 +134,11 @@ const TimeLog = (props) => {
     setForce(!force);
   }
 
+  const [isStopLog, setIsStopLog] = useState(false);
+  const changeIsStopLog = () => {
+    setIsStopLog(prev => !prev);
+  }
+
   const [time, setTime] = useState();
   const nowTime = () => {
     const startTime = new Date();
@@ -157,11 +163,6 @@ const TimeLog = (props) => {
     setIsDoing(!isDoing);
   }
 
-  const [nowId, setNowId] = useState();
-  const changeNowId = (id) => {
-    setNowId(id);
-  }
-  
   useEffect(() => {
     axios.get("https://kiroku-server.herokuapp.com/logs",
       {
@@ -176,7 +177,6 @@ const TimeLog = (props) => {
         } else {
           setIsDoing(true);
           setStartAction(res.data[0].item_name);
-          setNowId(res.data[0].id);
           setStartActionColor(res.data[0].color);
         }
       }
@@ -228,9 +228,8 @@ const TimeLog = (props) => {
                 isDoing ? (
                   <NowAction
                     startAction={startAction}
-                    changeIsDoing={changeIsDoing}
-                    nowId={nowId}
                     color={startActionColor}
+                    changeIsStopLog={changeIsStopLog}
                   />
                 ) : (
                   <LetAction />
@@ -247,22 +246,28 @@ const TimeLog = (props) => {
             </ActionContainer>
           </FlexBox>
         </Content>
-        {
-          isOpen ? (
-            <StartAction
-              time={time}
-              name={startAction}
-              color={startActionColor}
-              changeIsOpen={changeIsOpen}
-              changeIsDoing={changeIsDoing}
-              changeNowId={changeNowId}
-              nowDay={props.nowDay}
-            />
-          ) : (
-            null
-          )
-        }
       </Container>
+      {
+        isOpen ? (
+          <StartAction
+            time={time}
+            name={startAction}
+            color={startActionColor}
+            changeIsOpen={changeIsOpen}
+            changeIsDoing={changeIsDoing}
+            nowDay={props.nowDay}
+          />
+          ) : null
+        }
+      {
+        isStopLog ? (
+          <StopLog 
+            changeIsDoing={changeIsDoing} 
+            isStopLog={isStopLog}
+            changeIsStopLog={changeIsStopLog}
+          />
+        ) : null
+      }
 
       <Route path="/time-log/edit-actions/top" component={EditActionTop} />
       <Route 
