@@ -113,7 +113,6 @@ useEffect(() => {
       if (res.data.isInvalid) {
         history.push("/login");
       } else {
-        props.changeNowId(res.data.insertId);
         props.changeIsOpen();
         props.changeIsDoing();
       }

@@ -1,6 +1,4 @@
-import axios from "axios";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStopCircle } from "@fortawesome/free-regular-svg-icons";
 
@@ -62,40 +60,13 @@ const Stop = styled(FontAwesomeIcon)`
 
 const NowAction = (props) => {
 
-  let history = useHistory();
-
-  const stop = () => {
-    const stopTime = new Date();
-    const year = stopTime.getFullYear();
-    const month = stopTime.getMonth()+1;
-    const date = stopTime.getDate();
-    const hours = stopTime.getHours();
-    const minutes = stopTime.getMinutes();
-    const newMinutes = minutes+2-(minutes+2)%5;
-    const time = `${year},${month},${date},${hours},${newMinutes}`
-    axios.patch(`https://kiroku-server.herokuapp.com/logs/${props.nowId}/stop`,
-      {
-        finish_time: time
-      },
-      {
-        headers: {accessToken: localStorage.getItem("accessToken")}
-      }
-    ).then((res) => {
-      if (res.data.isInvalid) {
-        history.push("/login");
-      } else {
-        props.changeIsDoing();
-      }
-    });
-  }
-
   return (
     <Container>
       <Desc>実行中のアクション</Desc>
       <Action color={props.color}>
         <Mark color={props.color}></Mark>
         <Name>{props.startAction}</Name>
-        <StopBox onClick={stop}>
+        <StopBox onClick={props.changeIsStopLog}>
           <Stop icon={faStopCircle}></Stop>
         </StopBox>
       </Action>
