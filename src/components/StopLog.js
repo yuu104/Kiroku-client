@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import ChoiceModal from "./ChoiceModal";
 
 const StopLog = (props) => {
-  console.log('StopLog');
+
   let history = useHistory();
 
   const [id, setId] = useState();
@@ -20,6 +20,8 @@ const StopLog = (props) => {
     ).then((res) => {
       if (res.data.isInvalid) {
         history.push("/login");
+      } else if (res.data.length === 0) {
+        props.changeIsStopLog();
       } else {
         setId(res.data[0].id);
         setName(res.data[0].item_name);
@@ -30,7 +32,7 @@ const StopLog = (props) => {
         );
       }
     });
-  }, [history]);
+  }, [history, props]);
 
   const stop = () => {
     const stopTime = new Date();

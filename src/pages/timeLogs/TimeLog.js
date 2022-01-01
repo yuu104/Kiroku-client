@@ -181,7 +181,7 @@ const TimeLog = (props) => {
         }
       }
     });
-  },[history]);
+  },[history, isStopLog]);
 
 
   const [isToday, setIsToday] = useState();
