@@ -101,7 +101,7 @@ const TimeChart = memo((props) => {
 
   const [force, setForce] = useState(true);
   const changeForce = () => {
-    setForce(!force);
+    setForce(prev => !prev);
   }
 
   const [display, setDisplay] = useState('24h');

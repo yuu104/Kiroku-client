@@ -64,7 +64,7 @@ const EditLog = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const changeIsOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   }
 
   useEffect(() => {
