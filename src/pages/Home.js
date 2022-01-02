@@ -8,7 +8,7 @@ import { Link as Scroll } from "react-scroll";
 import pieImg from "../images/pie.png";
 import top24hImg from "../images/top-24h.png";
 import topTotalImg from "../images/top-total.png";
-import startActionImg from "../images/start-action.png";
+import startLogImg from "../images/start-log.png";
 import nowActionImg from "../images/now-action.png";
 import editLogImg from "../images/edit-log.png";
 import editActionImg from "../images/edit-action.png";
@@ -117,7 +117,6 @@ const Home = () => {
     <>
       <HomeHeader/>
       <Container>
-        {/* <Title>Kiroku</Title> */}
         <TitleBox>
           <Title>毎日の行動を記録しよう</Title>
           <PieImgContainer>
@@ -144,7 +143,7 @@ const Home = () => {
         <DescContainer id='desc2'>
           <Description
             title="記録方法は簡単です"
-            img1={startActionImg}
+            img1={startLogImg}
             img2={nowActionImg}
             desc={`画面下側にある、登録されたアクションのアイコンから選択し、開始時間を確認してください。開始ボタンを押すと記録が開始され、現在進行中のアクションが表示されます。\n記録を停止したい場合は「実行中アクション」の右側にある停止アイコンを押してください。`}
           />
