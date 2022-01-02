@@ -13,7 +13,6 @@ const Container = styled.div`
     align-items: center;
   } 
 `;
-
 const Box = styled.div`
   width: 100%;
   padding: 15px;
@@ -26,37 +25,30 @@ const Box = styled.div`
     box-sizing: border-box;
   }
 `;
-
 const Kiroku = styled.h2`
   margin: 0;
   font-size: 20px;
 `;
-
 const Title = styled.h2`
   margin: 5px 0 60px 0;
 `;
-
 const InpBox = styled.div`
   margin-bottom: 60px;
 `;
-
 const Label = styled.label`
   display: block;
   margin-top: 15px;
 `;
-
 const Inp = styled.input`
   width: 100%;
   height: 35px;
   box-sizing: border-box;
 `;
-
 const Span = styled.span`
   display: block;
   font-size: 15px;
   color: red;
 `;
-
 const Button = styled.div`
   display: flex;
   align-items: center;

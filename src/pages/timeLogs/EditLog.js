@@ -47,7 +47,7 @@ const Button = styled.div`
 `;
 const DeleteBtn = styled.div`
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-right: 10px;
 `;
 const DeleteIcon = styled(FontAwesomeIcon)`

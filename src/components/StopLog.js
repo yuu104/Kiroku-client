@@ -67,8 +67,8 @@ const StopLog = (props) => {
         if (res.data.isInvalid) {
           history.push("/login");
         } else {
-          props.changeIsDoing();
           props.changeIsStopLog();
+          props.changeIsDoing();
         }
       });
     }
