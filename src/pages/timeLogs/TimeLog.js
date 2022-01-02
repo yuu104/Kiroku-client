@@ -221,7 +221,6 @@ const TimeLog = (props) => {
             <TimeChart
               nowDay={props.nowDay}
               isDoing={isDoing}
-              changeRecordData={props.changeRecordData}
             />
             <ActionContainer>
               {
