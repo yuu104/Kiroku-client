@@ -8,4 +8,4 @@ Kiroku is a website where you can record your daily activities and visualize the
 You can login with this account to try it out.  
 **Username** : demo_user  
 **Password** : password  
-[Website URL](cocky-brahmagupta-6255c2.netlify.app)
+[Website URL](https://cocky-brahmagupta-6255c2.netlify.app/time-log)
