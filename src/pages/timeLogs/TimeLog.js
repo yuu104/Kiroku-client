@@ -176,13 +176,13 @@ const TimeLog = (props) => {
           setIsDoing(false);
         } else {
           setIsDoing(true);
-          setIsOpen(false);
           setStartAction(res.data[0].item_name);
           setStartActionColor(res.data[0].color);
         }
       }
     });
-  },[history, isStopLog, isOpen]);
+  },[history, isStopLog]);
+
 
   const [isToday, setIsToday] = useState();
   const today = new Date();
