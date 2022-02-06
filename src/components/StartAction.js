@@ -66,27 +66,50 @@ const StartAction = (props) => {
   const [startHours, setStartHours] = useState(alignment(props.time.getHours()));
   const [startMinutes, setStartMinutes] = useState(alignment(props.time.getMinutes()));
 
+  useEffect(() => {
+    let unmounted = false;
+    axios.get("https://kiroku-server.herokuapp.com/logs",
+      {
+        headers: {accessToken: localStorage.getItem("accessToken")}
+      }
+    ).then((res) => {
+      if (res.data.isInvalid) {
+        history.push("/login");
+      } else {
+        if (res.data.length !== 0 && !unmounted) {
+          props.changeIsDoing();
+          props.changeStartAction(res.data[0].item_name);
+          props.changeStartActionColor(res.data[0].color);
+          props.changeIsOpen();
+        }
+      }
+    });
+    return () => unmounted = true;
+  }, [history, props]);
+
   const [finishTimes, setFinishTimes] = useState([]);
   const dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`;
-useEffect(() => {
-  axios.get(`https://kiroku-server.herokuapp.com/logs/${dateString}`, 
-    {
-      headers: {accessToken: localStorage.getItem("accessToken")}
-    }
-  ).then((res) => {
-    if (res.data.isInvalid) {
-      history.push("/login");
-    } else {
-      const tmp = [];
-      res.data.forEach((data) => {
-        const finishTimeData = data.finish_time.split(",");
-        const finishTime = new Date(finishTimeData[0], finishTimeData[1]-1, finishTimeData[2],finishTimeData[3], finishTimeData[4]);
-        tmp.push(finishTime);
-      });
-      setFinishTimes(tmp);
-    }
-  });
-},[history, dateString]);
+  useEffect(() => {
+    let unmounted = false;
+    axios.get(`https://kiroku-server.herokuapp.com/logs/${dateString}`, 
+      {
+        headers: {accessToken: localStorage.getItem("accessToken")}
+      }
+    ).then((res) => {
+      if (res.data.isInvalid) {
+        history.push("/login");
+      } else {
+        const tmp = [];
+        res.data.forEach((data) => {
+          const finishTimeData = data.finish_time.split(",");
+          const finishTime = new Date(finishTimeData[0], finishTimeData[1]-1, finishTimeData[2],finishTimeData[3], finishTimeData[4]);
+          tmp.push(finishTime);
+        });
+        if (!unmounted) setFinishTimes(tmp);
+      }
+    });
+    return () => unmounted = true;
+  },[history, dateString]);
 
   const start = () => {
     const date = `${props.time.getFullYear()},${props.time.getMonth()+1},${props.time.getDate()},${startHours},${startMinutes}`

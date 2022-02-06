@@ -156,8 +156,13 @@ const TimeLog = (props) => {
     setIsOpen(prev => !prev);
   }
   const [startAction, setStartAction] = useState("");
+  const changeStartAction = (state) => {
+    setStartAction(state);
+  }
   const [startActionColor, setStartActionColor] = useState("");
-
+  const changeStartActionColor = (state) => {
+    setStartActionColor(state);
+  }
   const [isDoing, setIsDoing] = useState();
   const changeIsDoing = () => {
     setIsDoing(prev => !prev);
@@ -181,7 +186,7 @@ const TimeLog = (props) => {
         }
       }
     });
-  },[history, isStopLog]);
+  },[history]);
 
 
   const [isToday, setIsToday] = useState();
@@ -207,7 +212,7 @@ const TimeLog = (props) => {
 
   const onClick = (action) => {
     nowTime();
-    changeIsOpen();
+    setIsOpen(true);
     setStartAction(action.item_name);
     setStartActionColor(action.color);
   }
@@ -255,6 +260,8 @@ const TimeLog = (props) => {
             changeIsOpen={changeIsOpen}
             changeIsDoing={changeIsDoing}
             nowDay={props.nowDay}
+            changeStartAction={changeStartAction}
+            changeStartActionColor={changeStartActionColor}
           />
           ) : null
         }
