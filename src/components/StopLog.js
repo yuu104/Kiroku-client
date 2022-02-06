@@ -13,6 +13,7 @@ const StopLog = (props) => {
   const [startTime, setStartTime] = useState();
 
   useEffect(() => {
+    let unmounted = false;
     axios.get("https://kiroku-server.herokuapp.com/logs",
       {
         headers: {accessToken: localStorage.getItem("accessToken")}
@@ -20,9 +21,10 @@ const StopLog = (props) => {
     ).then((res) => {
       if (res.data.isInvalid) {
         history.push("/login");
-      } else if (res.data.length === 0) {
+      } else if (res.data.length === 0 && !unmounted) {
+        props.changeIsDoing();
         props.changeIsStopLog();
-      } else {
+      } else if (!unmounted) {
         setId(res.data[0].id);
         setName(res.data[0].item_name);
         setColor(res.data[0].color);
@@ -32,6 +34,7 @@ const StopLog = (props) => {
         );
       }
     });
+    return () => unmounted = true;
   }, [history, props]);
 
   const stop = () => {
