@@ -46,8 +46,9 @@ const StopLog = (props) => {
     const minutes = stopTime.getMinutes();
     const newMinutes = minutes+2-(minutes+2)%5;
     const time = `${year},${month},${date},${hours},${newMinutes}`;
+    const timeDate = new Date(year, month-1, date, hours, newMinutes);
 
-    if (new Date(year, month-1, date, hours, newMinutes) - startTime === 0) {
+    if (timeDate - startTime === 0 || timeDate.getDate() - startTime.getDate() > 1) {
       axios.delete(`https://kiroku-server.herokuapp.com/logs`,
         {
           data: {
