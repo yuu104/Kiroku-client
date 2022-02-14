@@ -11,14 +11,16 @@ const StopLog = (props) => {
   const [name, setName] = useState();
   const [color, setColor] = useState();
   const [startTime, setStartTime] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let unmounted = false;
-    axios.get("https://kiroku-server.herokuapp.com/logs",
-      {
-        headers: {accessToken: localStorage.getItem("accessToken")}
-      }
-    ).then((res) => {
+    const getLogs = async () => {
+      setIsLoading(true);
+      const res = await axios.get(
+        'https://kiroku-server.herokuapp.com/logs', 
+        { headers: {accessToken: localStorage.getItem("accessToken")} }
+      );
       if (res.data.isInvalid) {
         history.push("/login");
       } else if (res.data.length === 0 && !unmounted) {
@@ -33,7 +35,9 @@ const StopLog = (props) => {
           new Date(timeData[0], timeData[1]-1, timeData[2], timeData[3], timeData[4])
         );
       }
-    });
+      setIsLoading(false);
+    }
+    getLogs();
     return () => unmounted = true;
   }, [history, props]);
 
@@ -81,6 +85,7 @@ const StopLog = (props) => {
   return (
     <ChoiceModal
       isOpen={props.isStopLog}
+      isLoading={isLoading}
       title="記録を終了しますか？"
       no="キャンセル"
       yes="終了"
@@ -91,7 +96,6 @@ const StopLog = (props) => {
       cancel={props.changeIsStopLog}
     />
   );
-
 }
 
 export default StopLog;

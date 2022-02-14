@@ -15,7 +15,6 @@ const Overlay = styled.div`
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.4);
 `;
-
 const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -29,27 +28,29 @@ const Container = styled.div`
     padding: 30px;
   }
 `;
-
 const Title = styled.h2`
   text-align: center;
   margin-bottom: 30px;
 `;
-
 const IconContainer = styled.div`
+  position: relative;
+  height: 300px;
+  margin: 10px 0 0 0;
+`;
+const GridContainer = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 50px);
+  grid-auto-rows: 50px;
   gap: 10px;
-  margin: 0;
-  margin-top: 20px;
   overflow: scroll;
   z-index: 1;
-  max-height: 300px;
+  height: 100%;
   @media(min-width: 600px) {
     grid-template-columns: repeat(auto-fit, 70px);
+    grid-auto-rows: 70px;
   }
 `;
-
 const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -75,11 +76,15 @@ const EditActionTop = (props) => {
     <Overlay>
       <Container>
         <CloseButton onClick={() => history.push("/time-log")} />
-        <Title>アクションの編集</Title>
-        <IconContainer>
-          <IconGrid onClick={(action) => history.push(`/time-log/edit-actions/edit/${action.id}`)} />
-        </IconContainer>
-        <Button onClick={() => history.push("/time-log/edit-actions/add")}> ＋ 新規アクション追加</Button>
+          <Title>アクションの編集</Title>
+          <IconContainer>
+            <GridContainer>
+              <IconGrid
+                onClick={(action) => history.push(`/time-log/edit-actions/edit/${action.id}`)}
+              />
+            </GridContainer>
+          </IconContainer>
+          <Button onClick={() => history.push("/time-log/edit-actions/add")}> ＋ 新規アクション追加</Button>
       </Container>
     </Overlay>
   );

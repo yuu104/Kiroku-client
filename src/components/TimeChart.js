@@ -11,30 +11,37 @@ import "chart.js";
 import EditTimeLog from "../pages/timeLogs/EditTimeLog";
 import TimeLabel from "./TimeLabel";
 import ToggleButton from "./ToggleButton";
+import Loading from "./Loading";
 
 // styled-components →
 const Container = styled.div`
   position: relative;
   width: 330px;
+  height: 330px;
   margin: 40px auto 0 auto;
   @media(min-width: 376px) {
     width: 360px;
+    height: 360px;
   }
   @media(min-width: 600px) {
     width: 440px;
+    height: 440px;
   }
   @media(min-width: 600px) and (min-height: 1000px) {
     width: 570px;
+    height: 570px;
   }
   @media(min-width: 900px) {
     width: 50%;
     max-width: 550px;
+    height: auto;
     padding: 0;
     margin-top: 0;
   }
   @media(min-width: 900px) and (min-height: 1000px) {
     width: 750px;
     max-width: 700px;
+    height: auto;
     margin: 0 auto;
   }
 `;
@@ -99,11 +106,11 @@ const TimeChart = memo((props) => {
 
   let history = useHistory();
 
+  const [isLoading, setIsLoading] = useState(true);
   const [force, setForce] = useState(true);
   const changeForce = () => {
     setForce(prev => !prev);
   }
-
   const [display, setDisplay] = useState('24h');
   const changeDisplay = useCallback((newDisplay) => {
       setDisplay(newDisplay);
@@ -113,6 +120,7 @@ const TimeChart = memo((props) => {
 
   const [chartData, setChartData] = useState([]);
   useEffect(() => {
+    setIsLoading(true);
     axios.get(`https://kiroku-server.herokuapp.com/logs/${dateString}`,
       {
         headers: {accessToken: localStorage.getItem("accessToken")}
@@ -133,20 +141,27 @@ const TimeChart = memo((props) => {
         });
         setChartData(tmp);
       }
+      setIsLoading(false);
     });
   }, [dateString, force, props.isDoing, history]);
 
   const noData = (
-    <> 
+    <>
       <Container>
-        <NoDataContainer>
-            <NoDataTitle>データがありません</NoDataTitle>
-            <EditIcon
-              icon={faEdit}
-              onClick={() => history.push("/time-log/edit-log/top")}
-            >
-            </EditIcon>
-        </NoDataContainer>
+        {
+          isLoading ? (
+            <Loading />
+          ) : (
+            <NoDataContainer>
+                <NoDataTitle>データがありません</NoDataTitle>
+                <EditIcon
+                  icon={faEdit}
+                  onClick={() => history.push("/time-log/edit-log/top")}
+                >
+                </EditIcon>
+            </NoDataContainer>
+          )
+        }
       </Container>
       <Route
         path="/time-log/edit-log"
@@ -340,58 +355,61 @@ const TimeChart = memo((props) => {
     <>
       <Container>
         {
-          display === '24h' ? (
-            <>
-              <Pie
-                data={data}
-                plugins={[ChartDataLabels]}
-                options={options}
-                //className="chart24"
-              />
-              <TimeLabelContainer>
-                <TimeLabel />
-              </TimeLabelContainer>
-              <EditIcon
-                icon={faEdit} 
-                onClick={() => history.push("/time-log/edit-log/top")}
-              >
-              </EditIcon>
-              <ToggleBox>
-                <ToggleButton
-                  display={display}
-                  leftContent='24h'
-                  rightContent='TOTAL'
-                  nowContent='24h'
-                  changeDisplay={changeDisplay}
-                />
-              </ToggleBox>
-            </>
+          isLoading ? (
+            <Loading />
           ) : (
-            <>
-              <Pie
-                data={totalData}
-                plugins={[ChartDataLabels]}
-                options={options}
-              />
-              <EditIcon
-                icon={faEdit} 
-                onClick={() => history.push("/time-log/edit-log/top")}
-              >
-              </EditIcon>
-              <ToggleBox>
-                <ToggleButton
-                  display={display}
-                  leftContent='24h'
-                  rightContent='TOTAL'
-                  nowContent='TOTAL'
-                  changeDisplay={changeDisplay}
+            display === '24h' ? (
+              <>
+                <Pie
+                  data={data}
+                  plugins={[ChartDataLabels]}
+                  options={options}
+                  //className="chart24"
                 />
-              </ToggleBox>
-            </>
+                <TimeLabelContainer>
+                  <TimeLabel />
+                </TimeLabelContainer>
+                <EditIcon
+                  icon={faEdit} 
+                  onClick={() => history.push("/time-log/edit-log/top")}
+                >
+                </EditIcon>
+                <ToggleBox>
+                  <ToggleButton
+                    display={display}
+                    leftContent='24h'
+                    rightContent='TOTAL'
+                    nowContent='24h'
+                    changeDisplay={changeDisplay}
+                  />
+                </ToggleBox>
+              </>
+            ) : (
+              <>
+                <Pie
+                  data={totalData}
+                  plugins={[ChartDataLabels]}
+                  options={options}
+                />
+                <EditIcon
+                  icon={faEdit} 
+                  onClick={() => history.push("/time-log/edit-log/top")}
+                >
+                </EditIcon>
+                <ToggleBox>
+                  <ToggleButton
+                    display={display}
+                    leftContent='24h'
+                    rightContent='TOTAL'
+                    nowContent='TOTAL'
+                    changeDisplay={changeDisplay}
+                  />
+                </ToggleBox>
+              </>
+            )
           )
         }
       </Container>
-
       <Route
         path="/time-log/edit-log"
         render={() => 
