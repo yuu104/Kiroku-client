@@ -69,29 +69,34 @@ const ActionContainer  = styled.div`
   }
 `;
 const IconContainer = styled.div`
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, 50px);
-  gap: 10px;
-  margin: 0;
-  margin-top: 10px;
-  overflow: scroll;
-  z-index: 1;
-  max-height: 100px;
+  position: relative;
+  height: 100px;
+  margin: 10px 0 0 0;
   @media(min-width: 376px) {
     margin-top: 20px;
   }
   @media(min-width: 420px) {
-    max-height: 160px;
-  }
-  @media(min-width: 600px) {
-    grid-template-columns: repeat(auto-fit, 70px);
+    height: 160px;
   }
   @media(min-width: 374px) and (min-height: 800px) {
-    max-height: 230px;
+    height: 230px;
   }
   @media(min-width: 374px) and (min-height: 1000px) {
-    max-height: 160px;
+    height: 160px;
+  }
+`;
+const GridContainer = styled.div`
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, 50px);
+  grid-auto-rows: 50px;
+  gap: 10px;
+  overflow: scroll;
+  z-index: 1;
+  height: 100%;
+  @media(min-width: 600px) {
+    grid-template-columns: repeat(auto-fit, 70px);
+    grid-auto-rows: 70px;
   }
 `;
 const Button = styled.div`
@@ -240,11 +245,13 @@ const TimeLog = (props) => {
                 )
               }
               <IconContainer>
-                <IconGrid 
-                  onClick={onClick} 
-                  isMask={isMask} 
-                  force={force} 
-                />
+                <GridContainer>
+                  <IconGrid
+                    onClick={onClick}
+                    isMask={isMask}
+                    force={force}
+                  />
+                </GridContainer>
               </IconContainer>
               <Button onClick={() => history.push("/time-log/edit-actions/top")}>アクションの編集</Button>
             </ActionContainer>

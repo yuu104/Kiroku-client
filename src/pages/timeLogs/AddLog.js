@@ -31,17 +31,22 @@ const Title = styled.h2`
   }
 `;
 const IconContainer = styled.div`
+  position: relative;
   height: 250px;
+  margin: 20px 0;
+`;
+const GridContainer = styled.div`
+  height: 100%;
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fit, 50px);
+  grid-auto-rows: 50px;
   gap: 10px;
-  margin: 20px 0;
   overflow: scroll;
   z-index: 1;
   @media(min-width: 600px) {
     grid-template-columns: repeat(auto-fit, 70px);
-    height: 250px;
+    grid-auto-rows: 70px;
   }
 `;
 const Button = styled.div`
@@ -64,7 +69,7 @@ const AddLog = (props) => {
 
   let history = useHistory();
 
-  return (
+  return (  
     <>
       <BackBtn onClick={() => history.goBack()}>
         <BackIcon icon={faAngleDoubleLeft}>
@@ -72,10 +77,12 @@ const AddLog = (props) => {
       </BackBtn>
       <Title>記録の追加</Title>
       <IconContainer>
-        <IconGrid
-          focusKey={props.focusKey}
-          onClick={props.onClick}
-        />
+        <GridContainer>
+          <IconGrid
+            focusKey={props.focusKey}
+            onClick={props.onClick}
+          />
+        </GridContainer>
       </IconContainer>
       <SelectTime
         inpTitle="開始時間"

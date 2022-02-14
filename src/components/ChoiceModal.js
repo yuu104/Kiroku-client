@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ActionIcon from "./ActionIcon";
+import Loading from "./Loading";
 
 // styled-components →
 const Overlay = styled.div`
@@ -16,6 +17,7 @@ const Overlay = styled.div`
 `;
 const Container = styled.div`
   width: 300px;
+  height: ${props => props.isIcon ? '224px' : 'auto'};
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -56,19 +58,27 @@ const ChoiceModal = (props) => {
   return(
     props.isOpen ? (
       <Overlay>
-        <Container>
-          <Title>{props.title}</Title>
+        <Container isIcon={props.isIcon}>
           {
-            props.isIcon ? (
-              <Icon>
-                <ActionIcon name={props.name} color={props.color} />
-              </Icon>
-            ) : null
+            props.isLoading ? (
+              <Loading />
+            ) : (
+              <>
+                <Title>{props.title}</Title>
+                {
+                  props.isIcon ? (
+                    <Icon>
+                      <ActionIcon name={props.name} color={props.color} />
+                    </Icon>
+                  ) : null
+                }
+                <ButtonContainer>
+                    <Button onClick={props.cancel}>{props.no}</Button>
+                    <Button onClick={props.yesEvent}>{props.yes}</Button>
+                </ButtonContainer>
+              </>
+            )
           }
-          <ButtonContainer>
-              <Button onClick={props.cancel}>{props.no}</Button>
-              <Button onClick={props.yesEvent}>{props.yes}</Button>
-          </ButtonContainer>
         </Container>
       </Overlay>
     ) : null

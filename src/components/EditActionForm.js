@@ -95,7 +95,6 @@ const ColorContainer = styled.div`
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(auto-fill, 50px);
-  //grid-template-rows: repeat(auto-fill, 50px);
   gap: 10px;
   box-sizing: border-box;
   background-color: #fff;
