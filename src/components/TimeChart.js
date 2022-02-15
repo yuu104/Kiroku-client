@@ -61,6 +61,7 @@ const EditIcon = styled(FontAwesomeIcon)`
   font-size: 30px;
   position: absolute;
   top: 0;
+  left: 0;
   cursor: pointer;
   z-index: 20;
   opacity: 0.7;
