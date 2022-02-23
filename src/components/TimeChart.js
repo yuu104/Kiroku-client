@@ -290,6 +290,7 @@ const TimeChart = memo((props) => {
               let hour = ~~(value / 60);
               const tmp = hour * 60;
               let minutes = value - tmp;
+              if (hour === 0 && minutes <= 15) return null;
               hour = ("0" + hour).slice(-2);
               minutes = ("0" + minutes).slice(-2);
               if (label === "空き時間") return null;
@@ -365,7 +366,7 @@ const TimeChart = memo((props) => {
                   data={data}
                   plugins={[ChartDataLabels]}
                   options={options}
-                  //className="chart24"
+                  className="chart24"
                 />
                 <TimeLabelContainer>
                   <TimeLabel />
