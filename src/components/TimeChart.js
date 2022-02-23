@@ -366,7 +366,7 @@ const TimeChart = memo((props) => {
                   data={data}
                   plugins={[ChartDataLabels]}
                   options={options}
-                  //className="chart24"
+                  className="chart24"
                 />
                 <TimeLabelContainer>
                   <TimeLabel />
