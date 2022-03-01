@@ -42,6 +42,7 @@ const StopLog = (props) => {
   }, [history, props]);
 
   const stop = () => {
+    setIsLoading(true);
     const stopTime = new Date();
     const year = stopTime.getFullYear();
     const month = stopTime.getMonth()+1;
@@ -60,6 +61,7 @@ const StopLog = (props) => {
           }
         }
       ).then((res) => {
+        setIsLoading(false);
         props.changeIsStopLog();
         props.changeIsDoing();
       });
@@ -72,6 +74,7 @@ const StopLog = (props) => {
           headers: {accessToken: localStorage.getItem("accessToken")}
         }
       ).then((res) => {
+        setIsLoading(false);
         if (res.data.isInvalid) {
           history.push("/login");
         } else {

@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import CloseButton from "./CloseButton";
 import SelectTime from "./SelectTime";
+import Loading from "./Loading";
 
 // styled-components →
 const Overlay = styled.div`
@@ -63,55 +64,48 @@ const StartAction = (props) => {
     }
   }
 
+  const [isLoading, setIsLoading] = useState(true);
   const [startHours, setStartHours] = useState(alignment(props.time.getHours()));
   const [startMinutes, setStartMinutes] = useState(alignment(props.time.getMinutes()));
-
-  useEffect(() => {
-    let unmounted = false;
-    axios.get("https://kiroku-server.herokuapp.com/logs",
-      {
-        headers: {accessToken: localStorage.getItem("accessToken")}
-      }
-    ).then((res) => {
-      if (res.data.isInvalid) {
-        history.push("/login");
-      } else {
-        if (res.data.length !== 0 && !unmounted) {
-          props.changeIsDoing();
-          props.changeStartAction(res.data[0].item_name);
-          props.changeStartActionColor(res.data[0].color);
-          props.changeIsOpen();
-        }
-      }
-    });
-    return () => unmounted = true;
-  }, [history, props]);
-
   const [finishTimes, setFinishTimes] = useState([]);
   const dateString = `${props.nowDay.getFullYear()},${props.nowDay.getMonth()+1},${props.nowDay.getDate()}`;
   useEffect(() => {
     let unmounted = false;
-    axios.get(`https://kiroku-server.herokuapp.com/logs/${dateString}`, 
-      {
-        headers: {accessToken: localStorage.getItem("accessToken")}
-      }
-    ).then((res) => {
-      if (res.data.isInvalid) {
+    const getData = async () => {
+      const getNowLog = axios.get(
+        "https://kiroku-server.herokuapp.com/logs",
+        { headers: {accessToken: localStorage.getItem("accessToken")} }
+      );
+      const getLogs = axios.get(
+        `https://kiroku-server.herokuapp.com/logs/${dateString}`, 
+        { headers: {accessToken: localStorage.getItem("accessToken")} }
+      );
+      const nowLogData = await getNowLog;
+      const LogsData = await getLogs;
+      if (nowLogData.data.isInvalid || LogsData.data.isInvalid) {
         history.push("/login");
+      } else if (nowLogData.data.length !== 0 && !unmounted) {
+        props.changeIsDoing();
+        props.changeStartAction(nowLogData.data[0].item_name);
+        props.changeStartActionColor(nowLogData.data[0].color);
+        props.changeIsOpen();
       } else {
         const tmp = [];
-        res.data.forEach((data) => {
+        LogsData.data.forEach((data) => {
           const finishTimeData = data.finish_time.split(",");
           const finishTime = new Date(finishTimeData[0], finishTimeData[1]-1, finishTimeData[2],finishTimeData[3], finishTimeData[4]);
           tmp.push(finishTime);
         });
         if (!unmounted) setFinishTimes(tmp);
       }
-    });
+      setIsLoading(false);
+    }
+    getData();
     return () => unmounted = true;
-  },[history, dateString]);
+  }, [history, props, dateString]);
 
   const start = () => {
+    setIsLoading(true);
     const date = `${props.time.getFullYear()},${props.time.getMonth()+1},${props.time.getDate()},${startHours},${startMinutes}`
     finishTimes.sort((a, b) => {
       return (a < b ? 1 : -1);
@@ -122,7 +116,6 @@ const StartAction = (props) => {
       alert("この時刻からは開始できません。");
       return;
     }
-    
     axios.post("https://kiroku-server.herokuapp.com/logs",
       {
         item_name: props.name,
@@ -133,6 +126,7 @@ const StartAction = (props) => {
         headers: {accessToken: localStorage.getItem("accessToken")}
       }
     ).then((res) => {
+      setIsLoading(false);
       if (res.data.isInvalid) {
         history.push("/login");
       } else {
@@ -145,16 +139,24 @@ const StartAction = (props) => {
   return (
     <Overlay>
       <Container>
-        <CloseButton onClick={props.changeIsOpen} />
-        <ActionName>{props.name}</ActionName>
-        <SelectTime
-          inpTitle="開始時間"
-          hours={startHours}
-          changeHours={(e) => setStartHours(e)}
-          minutes={startMinutes}
-          changeMinutes={(e) => setStartMinutes(e)}
-        />
-        <Button onClick={start}>開始</Button>
+        {
+          isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <CloseButton onClick={props.changeIsOpen} />
+              <ActionName>{props.name}</ActionName>
+              <SelectTime
+                inpTitle="開始時間"
+                hours={startHours}
+                changeHours={(e) => setStartHours(e)}
+                minutes={startMinutes}
+                changeMinutes={(e) => setStartMinutes(e)}
+              />
+              <Button onClick={start}>開始</Button>
+            </>
+          )
+        }
       </Container>
     </Overlay>
   );
