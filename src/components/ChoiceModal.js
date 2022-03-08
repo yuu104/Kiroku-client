@@ -17,7 +17,7 @@ const Overlay = styled.div`
 `;
 const Container = styled.div`
   width: 300px;
-  height: ${props => props.isIcon ? '224px' : 'auto'};
+  height: ${(props) => (props.isIcon ? "224px" : "auto")};
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -54,35 +54,28 @@ const Button = styled.div`
 // ← styled-components
 
 const ChoiceModal = (props) => {
-
-  return(
-    props.isOpen ? (
-      <Overlay>
-        <Container isIcon={props.isIcon}>
-          {
-            props.isLoading ? (
-              <Loading />
-            ) : (
-              <>
-                <Title>{props.title}</Title>
-                {
-                  props.isIcon ? (
-                    <Icon>
-                      <ActionIcon name={props.name} color={props.color} />
-                    </Icon>
-                  ) : null
-                }
-                <ButtonContainer>
-                    <Button onClick={props.cancel}>{props.no}</Button>
-                    <Button onClick={props.yesEvent}>{props.yes}</Button>
-                </ButtonContainer>
-              </>
-            )
-          }
-        </Container>
-      </Overlay>
-    ) : null
-  )
-}
+  return props.isOpen ? (
+    <Overlay>
+      <Container isIcon={props.isIcon}>
+        {props.isLoading ? (
+          <Loading />
+        ) : (
+          <>
+            <Title>{props.title}</Title>
+            {props.isIcon ? (
+              <Icon>
+                <ActionIcon name={props.name} color={props.color} />
+              </Icon>
+            ) : null}
+            <ButtonContainer>
+              <Button onClick={props.cancel}>{props.no}</Button>
+              <Button onClick={props.yesEvent}>{props.yes}</Button>
+            </ButtonContainer>
+          </>
+        )}
+      </Container>
+    </Overlay>
+  ) : null;
+};
 
 export default ChoiceModal;

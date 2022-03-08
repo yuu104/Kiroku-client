@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import CloseButton from "../../components/CloseButton";
 import IconGrid from "../../components/IconGrid";
 
-// styled-components → 
+// styled-components →
 const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -21,7 +21,7 @@ const Container = styled.div`
   background-color: #ffff;
   padding: 60px 20px;
   box-sizing: border-box;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     width: 400px;
     height: 600px;
     border-radius: 5px;
@@ -46,7 +46,7 @@ const GridContainer = styled.div`
   overflow: scroll;
   z-index: 1;
   height: 100%;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     grid-template-columns: repeat(auto-fit, 70px);
     grid-auto-rows: 70px;
   }
@@ -69,26 +69,29 @@ const Button = styled.div`
 // ← styled-components
 
 const EditActionTop = (props) => {
-
   let history = useHistory();
 
   return (
     <Overlay>
       <Container>
         <CloseButton onClick={() => history.push("/time-log")} />
-          <Title>アクションの編集</Title>
-          <IconContainer>
-            <GridContainer>
-              <IconGrid
-                onClick={(action) => history.push(`/time-log/edit-actions/edit/${action.id}`)}
-              />
-            </GridContainer>
-          </IconContainer>
-          <Button onClick={() => history.push("/time-log/edit-actions/add")}> ＋ 新規アクション追加</Button>
+        <Title>アクションの編集</Title>
+        <IconContainer>
+          <GridContainer>
+            <IconGrid
+              onClick={(action) =>
+                history.push(`/time-log/edit-actions/edit/${action.id}`)
+              }
+            />
+          </GridContainer>
+        </IconContainer>
+        <Button onClick={() => history.push("/time-log/edit-actions/add")}>
+          {" "}
+          ＋ 新規アクション追加
+        </Button>
       </Container>
     </Overlay>
   );
-
-}
+};
 
 export default EditActionTop;

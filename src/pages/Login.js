@@ -7,17 +7,17 @@ import axios from "axios";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     display: flex;
     justify-content: center;
     align-items: center;
-  } 
+  }
 `;
 const Box = styled.div`
   width: 100%;
   padding: 15px;
   box-sizing: border-box;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     width: 450px;
     border: 1px solid black;
     border-radius: 10px;
@@ -63,38 +63,37 @@ const Button = styled.div`
   &:hover {
     opacity: 0.8;
   }
-  `;
+`;
 // ← styled-components
 
-
-
-
 const Login = () => {
-
   let history = useHistory();
 
   const [username, setUsername] = useState("");
-  const [password, setPassword] =useState("");
+  const [password, setPassword] = useState("");
   const [isUsername, setIsUsername] = useState(true);
   const [isPassword, setIspassword] = useState(true);
 
   const onSubmit = () => {
-    const data = {username: username, password: password};
-    axios.post("https://kiroku-server.herokuapp.com/users/login", data).then((res) => {
-      if (res.data.message === "該当するユーザーが見つかりません") {
-        setIsUsername(false);
-        setIspassword(true);
-      } else if (!res.data.auth) {
-        setIsUsername(true);
-        setIspassword(false);
-      } else if (res.data.auth) {
-        localStorage.setItem("accessToken", res.data.token);
-        history.push('/time-log');
-      }
-    }).catch((err) => {
-      console.log("err:", err);
-    });
-  }
+    const data = { username: username, password: password };
+    axios
+      .post("https://kiroku-server.herokuapp.com/users/login", data)
+      .then((res) => {
+        if (res.data.message === "該当するユーザーが見つかりません") {
+          setIsUsername(false);
+          setIspassword(true);
+        } else if (!res.data.auth) {
+          setIsUsername(true);
+          setIspassword(false);
+        } else if (res.data.auth) {
+          localStorage.setItem("accessToken", res.data.token);
+          history.push("/time-log");
+        }
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      });
+  };
 
   return (
     <Container>
@@ -103,32 +102,18 @@ const Login = () => {
         <Title>ログイン</Title>
         <InpBox>
           <Label>ユーザ名</Label>
-          <Inp
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          {!isUsername ? (
-            <Span>該当するユーザーが見つかりません</Span>
-          ) : (
-            null
-          )}
+          <Inp type="text" onChange={(e) => setUsername(e.target.value)} />
+          {!isUsername ? <Span>該当するユーザーが見つかりません</Span> : null}
         </InpBox>
         <InpBox>
           <Label>パスワード</Label>
-          <Inp
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          {!isPassword ? (
-            <Span>パスワードが正しくありません</Span>
-          ) : (
-            null
-          )}
+          <Inp type="password" onChange={(e) => setPassword(e.target.value)} />
+          {!isPassword ? <Span>パスワードが正しくありません</Span> : null}
         </InpBox>
         <Button onClick={onSubmit}>ログイン</Button>
-        </Box>
+      </Box>
     </Container>
   );
-}
+};
 
 export default Login;

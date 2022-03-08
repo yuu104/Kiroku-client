@@ -12,7 +12,7 @@ const ImgContainer = styled.div`
   box-sizing: border-box;
   display: flex;
   justify-content: space-around;
-  background-color: #F9F5F1;
+  background-color: #f9f5f1;
   padding: 20px 0;
 `;
 const Img = styled.img`
@@ -35,7 +35,6 @@ const Desc = styled.div`
 // ← styled-components
 
 const Description = (props) => {
-
   return (
     <>
       <Title>{props.title}</Title>
@@ -46,7 +45,6 @@ const Description = (props) => {
       <Desc>{props.desc}</Desc>
     </>
   );
-
-}
+};
 
 export default Description;
