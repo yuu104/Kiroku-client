@@ -32,11 +32,14 @@ const Container = styled.div`
     height: 570px;
   }
   @media (min-width: 900px) {
-    width: 50%;
-    max-width: 550px;
-    height: auto;
+    width: 530px;
+    height: 530px;
     padding: 0;
     margin-top: 0;
+  }
+  @media (min-width: 1260px) {
+    width: 550px;
+    height: 550px;
   }
   @media (min-width: 900px) and (min-height: 1000px) {
     width: 750px;

@@ -38,7 +38,7 @@ const FlexBox = styled.div`
   }
   @media (min-width: 900px) {
     display: flex;
-    padding-top: 200px;
+    padding-top: 180px;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -54,7 +54,7 @@ const ActionContainer = styled.div`
   margin-top: 15px;
   text-align: center;
   @media (min-width: 900px) {
-    width: 50%;
+    width: 40%;
     margin-top: 100px;
   }
   @media (min-width: 374px) and (min-height: 800px) {
