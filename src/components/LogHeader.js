@@ -2,10 +2,14 @@ import styled from "styled-components";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
-} from '@material-ui/pickers';
+} from "@material-ui/pickers";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight, faAngleLeft, faSignOutAlt } from "@fortawesome/free-solid-svg-icons"
-import DateFnsUtils from '@date-io/date-fns';
+import {
+  faAngleRight,
+  faAngleLeft,
+  faSignOutAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import DateFnsUtils from "@date-io/date-fns";
 import { memo, useState } from "react";
 import { useHistory } from "react-router-dom";
 import ChoiceModal from "./ChoiceModal";
@@ -19,7 +23,7 @@ const Container = styled.div`
   height: 50px;
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     height: 70px;
   }
 `;
@@ -38,7 +42,7 @@ const IconContainer = styled.div`
   height: 35px;
   border-radius: 50%;
   cursor: pointer;
-  margin-right: ${props => props.direction === 'next'? '20px': '10px'};
+  margin-right: ${(props) => (props.direction === "next" ? "20px" : "10px")};
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
   }
@@ -79,21 +83,22 @@ const LogoutIcon = styled(FontAwesomeIcon)`
 // ← styled-components
 
 const LogHeader = memo((props) => {
-
   let history = useHistory();
 
-  const date = `${props.nowDay.getFullYear()}/${props.nowDay.getMonth()+1}/${props.nowDay.getDate()}`;
+  const date = `${props.nowDay.getFullYear()}/${
+    props.nowDay.getMonth() + 1
+  }/${props.nowDay.getDate()}`;
 
   const [isOpen, setIsOpen] = useState(false);
   const changeIsOpen = () => {
-    setIsOpen(prev => !prev);
-  }
+    setIsOpen((prev) => !prev);
+  };
 
   const logOut = () => {
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem("accessToken");
     setIsOpen(false);
-    history.push('/');
-  }
+    history.push("/");
+  };
 
   return (
     <>
@@ -102,7 +107,10 @@ const LogHeader = memo((props) => {
           <IconContainer onClick={() => props.changeDay("prev")}>
             <ArrowIcon icon={faAngleLeft} />
           </IconContainer>
-          <IconContainer direction='next' onClick={() => props.changeDay("next")}>
+          <IconContainer
+            direction="next"
+            onClick={() => props.changeDay("next")}
+          >
             <ArrowIcon icon={faAngleRight} />
           </IconContainer>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -113,7 +121,7 @@ const LogHeader = memo((props) => {
               disableToolbar
               InputProps={{
                 disableUnderline: true,
-                style: {fontSize: '20px'}
+                style: { fontSize: "20px" },
               }}
               value={date}
               onChange={(date) => props.changeDay(date)}
@@ -134,6 +142,6 @@ const LogHeader = memo((props) => {
       />
     </>
   );
-})
+});
 
 export default LogHeader;

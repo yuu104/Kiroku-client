@@ -13,7 +13,7 @@ const Container = styled.div`
   height: 50px;
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     height: 70px;
   }
 `;
@@ -56,7 +56,6 @@ const Button = styled(Link)`
 // ← styled-components
 
 const HomeHeader = () => {
-
   return (
     <Container>
       <Title>Kiroku</Title>
@@ -66,7 +65,6 @@ const HomeHeader = () => {
       </ButtonContainer>
     </Container>
   );
-
-}
+};
 
 export default HomeHeader;

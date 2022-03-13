@@ -23,13 +23,11 @@ const CloseIcon = styled(FontAwesomeIcon)`
 // → styled-components
 
 const CloseButton = (props) => {
-
   return (
     <Container onClick={props.onClick}>
       <CloseIcon icon={faTimes} />
     </Container>
   );
-
-}
+};
 
 export default CloseButton;

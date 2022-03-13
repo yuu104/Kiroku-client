@@ -1,14 +1,12 @@
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { useState } from "react";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import TimeLog from "./pages/timeLogs/TimeLog";
-import './App.css'
-
+import "./App.css";
 
 function App() {
-
   const [nowDay, setNowDay] = useState(new Date());
   const changeDay = (key) => {
     let newDate;
@@ -16,12 +14,12 @@ function App() {
       newDate = nowDay.getDate() - 1;
       setNowDay(new Date(nowDay.getFullYear(), nowDay.getMonth(), newDate));
     } else if (key === "next") {
-      newDate = nowDay.getDate() +1;
+      newDate = nowDay.getDate() + 1;
       setNowDay(new Date(nowDay.getFullYear(), nowDay.getMonth(), newDate));
     } else {
       setNowDay(new Date(key));
     }
-  }
+  };
 
   return (
     <div className="App">
@@ -30,8 +28,9 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-          <Route path="/time-log" 
-            render={() => <TimeLog nowDay={nowDay} changeDay={changeDay} /> }
+          <Route
+            path="/time-log"
+            render={() => <TimeLog nowDay={nowDay} changeDay={changeDay} />}
           />
         </Switch>
       </Router>

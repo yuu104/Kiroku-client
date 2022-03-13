@@ -9,7 +9,6 @@ const Container = styled.div`
 // ← styled-components
 
 const TimeLabel = () => {
-
   return (
     <Container>
       <div className="time-box">
@@ -86,7 +85,6 @@ const TimeLabel = () => {
       </div>
     </Container>
   );
-
-}
+};
 
 export default TimeLabel;

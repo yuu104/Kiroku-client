@@ -44,7 +44,7 @@ const GridContainer = styled.div`
   gap: 10px;
   overflow: scroll;
   z-index: 1;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     grid-template-columns: repeat(auto-fit, 70px);
     grid-auto-rows: 70px;
   }
@@ -59,29 +59,24 @@ const Button = styled.div`
   text-align: center;
   font-size: 15px;
   padding: 8px 0;
-  &:hover{
-    background-color: rgba(55, 53, 47, 0.05)
+  &:hover {
+    background-color: rgba(55, 53, 47, 0.05);
   }
 `;
 // ← styled-components
 
 const AddLog = (props) => {
-
   let history = useHistory();
 
-  return (  
+  return (
     <>
       <BackBtn onClick={() => history.goBack()}>
-        <BackIcon icon={faAngleDoubleLeft}>
-        </BackIcon>
+        <BackIcon icon={faAngleDoubleLeft}></BackIcon>
       </BackBtn>
       <Title>記録の追加</Title>
       <IconContainer>
         <GridContainer>
-          <IconGrid
-            focusKey={props.focusKey}
-            onClick={props.onClick}
-          />
+          <IconGrid focusKey={props.focusKey} onClick={props.onClick} />
         </GridContainer>
       </IconContainer>
       <SelectTime
@@ -93,7 +88,7 @@ const AddLog = (props) => {
       />
       <SelectTime
         inpTitle="終了時間"
-        hours={props.finishHours}         
+        hours={props.finishHours}
         changeHours={props.changeFinishHours}
         minutes={props.finishMinutes}
         changeMinutes={props.changeFinishMinutes}
@@ -101,6 +96,6 @@ const AddLog = (props) => {
       <Button onClick={props.add}>追加</Button>
     </>
   );
-}
+};
 
 export default AddLog;

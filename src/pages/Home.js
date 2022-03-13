@@ -15,7 +15,6 @@ import editActionImg from "../images/edit-action.png";
 import HomeHeader from "../components/HomeHeader";
 import Description from "../components/Description";
 
-
 // styled-components →
 const Container = styled.div`
   display: flex;
@@ -98,24 +97,22 @@ const DescContainer = styled.div`
 `;
 // ← styled-components
 
-
 const Home = () => {
-
   let history = useHistory();
 
   useEffect(() => {
-    axios.get("https://kiroku-server.herokuapp.com/auth",
-      {
-        headers: {accessToken: localStorage.getItem("accessToken")}
-      }
-    ).then((res) => {
-      if (!res.data.isInvalid) history.push("/time-log");
-    });
+    axios
+      .get("https://kiroku-server.herokuapp.com/auth", {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then((res) => {
+        if (!res.data.isInvalid) history.push("/time-log");
+      });
   }, [history]);
 
   return (
     <>
-      <HomeHeader/>
+      <HomeHeader />
       <Container>
         <TitleBox>
           <Title>毎日の行動を記録しよう</Title>
@@ -125,33 +122,48 @@ const Home = () => {
           <SubTitle>
             Kirokuは1日の行動を記録し、可視化できるサイトです。日々の行動を振り返り、無駄にした時間に気づくことができます。
           </SubTitle>
-          <ArrowBtnContainer to='desc1' smooth={true} duration={600} offset={-70}>
+          <ArrowBtnContainer
+            to="desc1"
+            smooth={true}
+            duration={600}
+            offset={-70}
+          >
             <ArrowBtn icon={faChevronDown} />
           </ArrowBtnContainer>
         </TitleBox>
-        <DescContainer id='desc1'>
+        <DescContainer id="desc1">
           <Description
             title="円グラフで行動記録を見やすく"
             img1={top24hImg}
             img2={topTotalImg}
             desc="1日の行動記録が円グラフで表示されます。時間を順に表示したグラフと行動ごとに合計時間を自動計算したグラフの2種類で切り替え可能です。"
           />
-          <ArrowBtnContainer to='desc2' smooth={true} duration={600} offset={-70}>
+          <ArrowBtnContainer
+            to="desc2"
+            smooth={true}
+            duration={600}
+            offset={-70}
+          >
             <ArrowBtn icon={faChevronDown} />
           </ArrowBtnContainer>
         </DescContainer>
-        <DescContainer id='desc2'>
+        <DescContainer id="desc2">
           <Description
             title="記録方法は簡単です"
             img1={startLogImg}
             img2={nowActionImg}
             desc={`画面下側にある、登録されたアクションのアイコンから選択し、開始時間を確認してください。開始ボタンを押すと記録が開始され、現在進行中のアクションが表示されます。\n記録を停止したい場合は「実行中アクション」の右側にある停止アイコンを押してください。`}
           />
-          <ArrowBtnContainer to='desc3' smooth={true} duration={600} offset={-70}>
+          <ArrowBtnContainer
+            to="desc3"
+            smooth={true}
+            duration={600}
+            offset={-70}
+          >
             <ArrowBtn icon={faChevronDown} />
           </ArrowBtnContainer>
         </DescContainer>
-        <DescContainer id='desc3'>
+        <DescContainer id="desc3">
           <Description
             title="記録とアクションの編集"
             img1={editLogImg}
@@ -163,7 +175,6 @@ const Home = () => {
       </Container>
     </>
   );
-
-}
+};
 
 export default Home;

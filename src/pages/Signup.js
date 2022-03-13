@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Formik, Form, Field, ErrorMessage} from "formik"; 
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import * as Yup from "yup";
 import { useState } from "react";
@@ -9,17 +9,17 @@ import { useHistory } from "react-router";
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     display: flex;
     justify-content: center;
     align-items: center;
-  } 
+  }
 `;
 const Box = styled.div`
   width: 100%;
   padding: 15px;
   box-sizing: border-box;
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     width: 450px;
     border: 1px solid black;
     border-radius: 10px;
@@ -65,20 +65,18 @@ const Button = styled.button`
   text-decoration: none;
   margin-bottom: 50px;
   border-radius: 5px;
-  &:hover{
+  &:hover {
     opacity: 0.8;
   }
-  `;
+`;
 // ← styled-components
 
-
 const Signup = () => {
-
   let history = useHistory();
 
   const initialValues = {
     username: "",
-    password: ""
+    password: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -89,17 +87,20 @@ const Signup = () => {
   const [availability, setAvailability] = useState(true);
 
   const onSubmit = (data) => {
-    axios.post("https://kiroku-server.herokuapp.com/users/signup", data).then((res) => {
-      if (res.data) {
-        setAvailability(true);
-        history.push('/time-log');
-      } else {
-        setAvailability(false);
-      }
-    }).catch((err) => {
-      console.log("err:", err);
-    });
-  }
+    axios
+      .post("https://kiroku-server.herokuapp.com/users/signup", data)
+      .then((res) => {
+        if (res.data) {
+          setAvailability(true);
+          history.push("/time-log");
+        } else {
+          setAvailability(false);
+        }
+      })
+      .catch((err) => {
+        console.log("err:", err);
+      });
+  };
 
   return (
     <Container>
@@ -122,9 +123,7 @@ const Signup = () => {
               <Error name="username" component="span" />
               {!availability ? (
                 <Span>このユーザー名は使用できません</Span>
-              ) : (
-                null
-              )}
+              ) : null}
             </InpBox>
             <InpBox>
               <Label>パスワード</Label>
@@ -141,6 +140,6 @@ const Signup = () => {
       </Box>
     </Container>
   );
-}
+};
 
 export default Signup;

@@ -2,7 +2,10 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashAlt,
+  faAngleDoubleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import ChoiceModal from "./ChoiceModal";
 import axios from "axios";
 
@@ -57,7 +60,7 @@ const Container = styled.div`
   ${NameInp}:focus + ${UnderLine} {
     transform: scaleX(1);
   }
-  @media(min-width: 600px) {
+  @media (min-width: 600px) {
     padding-top: 20px;
     width: 400px;
     height: 600px;
@@ -103,16 +106,17 @@ const ColorContainer = styled.div`
 const ColorItem = styled.div`
   cursor: pointer;
   height: 50px;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
   border-radius: 5px;
-  border: ${props => props.color === props.focusKey ? '2px solid rgb(55, 53, 47)' : 'none'};
+  border: ${(props) =>
+    props.color === props.focusKey ? "2px solid rgb(55, 53, 47)" : "none"};
 `;
 const ButtonContainer = styled.div`
   margin: 30px 0;
   display: flex;
   justify-content: center;
   position: relative;
-`
+`;
 const Button = styled.div`
   display: flex;
   justify-content: center;
@@ -140,107 +144,105 @@ const DeleteButton = styled.div`
     opacity: 1;
   }
 `;
-const DeleteIcon = styled(FontAwesomeIcon)` 
+const DeleteIcon = styled(FontAwesomeIcon)`
   font-size: 30px;
   cursor: pointer;
 `;
 // ← styled-components
 
 const EditActionForm = (props) => {
-
   let history = useHistory();
 
   const colors = [
-    'rgb(255, 23, 68)',
-    'rgb(198, 40, 40)',
-    'rgb(211, 47, 47)',
-    'rgb(229, 57, 53)',
-    'rgb(244, 67, 54)',
-    'rgb(239, 83, 80)',
-    'rgb(229, 115, 115)',
-    'rgb(239, 154, 154)',
-    'rgb(173, 20, 87)',
-    'rgb(194, 24, 91)',
-    'rgb(216, 27, 96)',
-    'rgb(233, 30, 99)',
-    'rgb(236, 64, 122)',
-    'rgb(240, 98, 146)',
-    'rgb(244, 143, 177)',
-    'rgb(106, 27, 154)',
-    'rgb(123, 31, 162)',
-    'rgb(142, 36, 170)',
-    'rgb(156, 39, 176)',
-    'rgb(171, 71, 188)',
-    'rgb(186, 104, 200)',
-    'rgb(206, 147, 216)',
-    'rgb(69, 39, 160)',
-    'rgb(94, 53, 177)',
-    'rgb(103, 58, 183)',
-    'rgb(126, 87, 194)',
-    'rgb(149, 117, 205)',
-    'rgb(179, 157, 219)',
-    'rgb(57, 73, 171)',
-    'rgb(92, 107, 192)',
-    'rgb(121, 134, 203)',
-    'rgb(159, 168, 218)',
-    'rgb(21, 101, 192)',
-    'rgb(30, 136, 229)',
-    'rgb(66, 165, 245)',
-    'rgb(100, 181, 246)',
-    'rgb(144, 202, 249)',
-    'rgb(0, 131, 143)',
-    'rgb(0, 151, 167)',
-    'rgb(38, 198, 218)',
-    'rgb(128, 222, 234)',
-    'rgb(0, 137, 123)',
-    'rgb(38, 166, 154)',
-    'rgb(128, 203, 196)',
-    'rgb(67, 160, 71)', 
-    'rgb(102, 187, 106)',
-    'rgb(165, 214, 167)',
-    'rgb(104, 159, 56)',
-    'rgb(139, 195, 74)',
-    'rgb(174, 213, 129)',
-    'rgb(175, 180, 43)',
-    'rgb(205, 220, 57)',
-    'rgb(230, 238, 156)',
-    'rgb(249, 168, 37)',
-    'rgb(253, 216, 53)',
-    'rgb(255, 235, 59)',
-    'rgb(255, 245, 157)',
-    'rgb(239, 108, 0)',
-    'rgb(216, 67, 21)',
-    'rgb(255, 87, 34)',
-    'rgb(255, 138, 101)',
-    'rgb(121, 85, 72)',
-    'rgb(161, 136, 127)',
-    'rgb(97, 97, 97)',
-    'rgb(224, 224, 224)',
-    'rgb(55, 71, 79)',
-    'rgb(96, 125, 139)',
-    'rgb(176, 190, 197)'
+    "rgb(255, 23, 68)",
+    "rgb(198, 40, 40)",
+    "rgb(211, 47, 47)",
+    "rgb(229, 57, 53)",
+    "rgb(244, 67, 54)",
+    "rgb(239, 83, 80)",
+    "rgb(229, 115, 115)",
+    "rgb(239, 154, 154)",
+    "rgb(173, 20, 87)",
+    "rgb(194, 24, 91)",
+    "rgb(216, 27, 96)",
+    "rgb(233, 30, 99)",
+    "rgb(236, 64, 122)",
+    "rgb(240, 98, 146)",
+    "rgb(244, 143, 177)",
+    "rgb(106, 27, 154)",
+    "rgb(123, 31, 162)",
+    "rgb(142, 36, 170)",
+    "rgb(156, 39, 176)",
+    "rgb(171, 71, 188)",
+    "rgb(186, 104, 200)",
+    "rgb(206, 147, 216)",
+    "rgb(69, 39, 160)",
+    "rgb(94, 53, 177)",
+    "rgb(103, 58, 183)",
+    "rgb(126, 87, 194)",
+    "rgb(149, 117, 205)",
+    "rgb(179, 157, 219)",
+    "rgb(57, 73, 171)",
+    "rgb(92, 107, 192)",
+    "rgb(121, 134, 203)",
+    "rgb(159, 168, 218)",
+    "rgb(21, 101, 192)",
+    "rgb(30, 136, 229)",
+    "rgb(66, 165, 245)",
+    "rgb(100, 181, 246)",
+    "rgb(144, 202, 249)",
+    "rgb(0, 131, 143)",
+    "rgb(0, 151, 167)",
+    "rgb(38, 198, 218)",
+    "rgb(128, 222, 234)",
+    "rgb(0, 137, 123)",
+    "rgb(38, 166, 154)",
+    "rgb(128, 203, 196)",
+    "rgb(67, 160, 71)",
+    "rgb(102, 187, 106)",
+    "rgb(165, 214, 167)",
+    "rgb(104, 159, 56)",
+    "rgb(139, 195, 74)",
+    "rgb(174, 213, 129)",
+    "rgb(175, 180, 43)",
+    "rgb(205, 220, 57)",
+    "rgb(230, 238, 156)",
+    "rgb(249, 168, 37)",
+    "rgb(253, 216, 53)",
+    "rgb(255, 235, 59)",
+    "rgb(255, 245, 157)",
+    "rgb(239, 108, 0)",
+    "rgb(216, 67, 21)",
+    "rgb(255, 87, 34)",
+    "rgb(255, 138, 101)",
+    "rgb(121, 85, 72)",
+    "rgb(161, 136, 127)",
+    "rgb(97, 97, 97)",
+    "rgb(224, 224, 224)",
+    "rgb(55, 71, 79)",
+    "rgb(96, 125, 139)",
+    "rgb(176, 190, 197)",
   ];
 
   const isEdit = props.boolean;
 
   const deleteAction = () => {
-    axios.delete(
-      "https://kiroku-server.herokuapp.com/actions",
-      { 
+    axios
+      .delete("https://kiroku-server.herokuapp.com/actions", {
         data: {
-          id: props.id
-        }
-      }
-    ).then((res) => {
-      props.changeForce();
-      history.push("/time-log/edit-actions/top");
-    });
-  }
+          id: props.id,
+        },
+      })
+      .then((res) => {
+        props.changeForce();
+        history.push("/time-log/edit-actions/top");
+      });
+  };
 
   const [isOpen, setIsOpen] = useState(props.isOpen);
   const changeIsOpen = () => {
-    setIsOpen(prev => !prev);
-  }
+    setIsOpen((prev) => !prev);
+  };
 
   return (
     <Overlay>
@@ -258,34 +260,27 @@ const EditActionForm = (props) => {
         <UnderLine></UnderLine>
         <ColorLabel>カラーの選択</ColorLabel>
         <ColorContainer>
-          {
-            colors.map((item) => {
-              return (
-                <ColorItem
-                  key={item}
-                  color={item}
-                  focusKey={props.focusKey}
-                  onClick={() => {
-                    props.changeColor(item);
-                    props.changeFocusKey(item);
-                  }}
-                >
-                </ColorItem>
-              );
-            })
-          }
+          {colors.map((item) => {
+            return (
+              <ColorItem
+                key={item}
+                color={item}
+                focusKey={props.focusKey}
+                onClick={() => {
+                  props.changeColor(item);
+                  props.changeFocusKey(item);
+                }}
+              ></ColorItem>
+            );
+          })}
         </ColorContainer>
         <ButtonContainer>
           <Button onClick={props.onClick}>{props.buttonName}</Button>
-          {
-            isEdit ? (
-              <DeleteButton onClick={() => setIsOpen(true)}>
-                <DeleteIcon icon={faTrashAlt}></DeleteIcon>
-              </DeleteButton>
-            ) : (
-              null
-            )
-          }
+          {isEdit ? (
+            <DeleteButton onClick={() => setIsOpen(true)}>
+              <DeleteIcon icon={faTrashAlt}></DeleteIcon>
+            </DeleteButton>
+          ) : null}
         </ButtonContainer>
       </Container>
       <ChoiceModal
@@ -301,7 +296,6 @@ const EditActionForm = (props) => {
       />
     </Overlay>
   );
-
-}
+};
 
 export default EditActionForm;

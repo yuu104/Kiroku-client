@@ -33,7 +33,7 @@ const Select = styled.select`
   border-radius: 5px;
   padding-right: 5px;
   &:hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0, 0, 0, 0.1);
   }
 `;
 
@@ -43,9 +43,46 @@ const Colon = styled.span`
 // ← styled-components
 
 const SelectTime = (props) => {
-
-  const hourNum = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23'];
-  const minuteNum = ['00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '50', '55'];
+  const hourNum = [
+    "00",
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+  ];
+  const minuteNum = [
+    "00",
+    "05",
+    "10",
+    "15",
+    "20",
+    "25",
+    "30",
+    "35",
+    "40",
+    "45",
+    "50",
+    "55",
+  ];
 
   return (
     <InpBox>
@@ -55,30 +92,22 @@ const SelectTime = (props) => {
           value={props.hours}
           onChange={(e) => props.changeHours(e.target.value)}
         >
-          {
-            hourNum.map((item) => {
-              return (
-                <option key={item}>{item}</option>
-              )
-            })
-          }
+          {hourNum.map((item) => {
+            return <option key={item}>{item}</option>;
+          })}
         </Select>
         <Colon>:</Colon>
         <Select
           value={props.minutes}
           onChange={(e) => props.changeMinutes(e.target.value)}
         >
-          {
-            minuteNum.map((item) => {
-              return (
-                <option key={item}>{item}</option>
-              )
-            })
-          }
+          {minuteNum.map((item) => {
+            return <option key={item}>{item}</option>;
+          })}
         </Select>
       </SelectBox>
     </InpBox>
   );
-}
+};
 
 export default SelectTime;

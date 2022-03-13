@@ -25,7 +25,7 @@ const Action = styled.div`
   align-items: center;
   height: 40px;
   border-bottom: 2px solid;
-  border-color: ${props => props.color};
+  border-color: ${(props) => props.color};
   @media (min-width: 900px) {
     margin: 0 50px;
   }
@@ -36,7 +36,7 @@ const Mark = styled.div`
   height: 25px;
   border-radius: 50%;
   margin-right: 10px;
-  background-color: ${props => props.color};
+  background-color: ${(props) => props.color};
 `;
 
 const Name = styled.p`
@@ -59,7 +59,6 @@ const Stop = styled(FontAwesomeIcon)`
 // ← styled-components
 
 const NowAction = (props) => {
-
   return (
     <Container>
       <Desc>実行中のアクション</Desc>
@@ -72,7 +71,6 @@ const NowAction = (props) => {
       </Action>
     </Container>
   );
-
-}
+};
 
 export default NowAction;

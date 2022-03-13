@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashAlt, faAngleDoubleLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+  faTrashAlt,
+  faAngleDoubleLeft,
+} from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import SelectTime from "../../components/SelectTime";
 import ChoiceModal from "../../components/ChoiceModal";
@@ -41,8 +44,8 @@ const Button = styled.div`
   text-align: center;
   font-size: 15px;
   padding: 8px 0;
-  &:hover{
-    background-color: rgba(55, 53, 47, 0.05)
+  &:hover {
+    background-color: rgba(55, 53, 47, 0.05);
   }
 `;
 const DeleteBtn = styled.div`
@@ -54,7 +57,7 @@ const DeleteIcon = styled(FontAwesomeIcon)`
   font-size: 30px;
   opacity: 0.7;
   cursor: pointer;
-  &:hover{
+  &:hover {
     opacity: 1;
   }
 `;
@@ -64,33 +67,31 @@ const EditLog = (props) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const changeIsOpen = () => {
-    setIsOpen(prev => !prev);
-  }
+    setIsOpen((prev) => !prev);
+  };
 
   useEffect(() => {
-    if (props.actionName === '') history.push("/time-log/edit-log/top");
+    if (props.actionName === "") history.push("/time-log/edit-log/top");
   }, [history, props.actionName]);
 
   const deleteRecord = () => {
-    axios.delete(
-      "https://kiroku-server.herokuapp.com/logs",
-      {
+    axios
+      .delete("https://kiroku-server.herokuapp.com/logs", {
         data: {
-          id: props.editId
-        }
-      }
-    ).then((res) => {
-      setIsOpen(false);
-      props.changeForce();
-      history.push("/time-log/edit-log/top");
-    });
-  }
+          id: props.editId,
+        },
+      })
+      .then((res) => {
+        setIsOpen(false);
+        props.changeForce();
+        history.push("/time-log/edit-log/top");
+      });
+  };
 
   return (
     <Container>
       <BackBtn onClick={() => history.goBack()}>
-        <BackIcon icon={faAngleDoubleLeft}>
-        </BackIcon>
+        <BackIcon icon={faAngleDoubleLeft}></BackIcon>
       </BackBtn>
       <ActionName>{props.actionName}</ActionName>
       <SelectTime
@@ -102,7 +103,7 @@ const EditLog = (props) => {
       />
       <SelectTime
         inpTitle="終了時間"
-        hours={props.finishHours}         
+        hours={props.finishHours}
         changeHours={props.changeFinishHours}
         minutes={props.finishMinutes}
         changeMinutes={props.changeFinishMinutes}
@@ -120,7 +121,7 @@ const EditLog = (props) => {
         yesEvent={deleteRecord}
       />
     </Container>
-  )
-}
+  );
+};
 
 export default EditLog;

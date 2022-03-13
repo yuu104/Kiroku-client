@@ -16,11 +16,16 @@ const Button = styled.div`
   font-size: 10px;
   font-weight: 600;
   cursor: pointer;
-  color: ${props => props.content === props.display ? '#42A5F5' : 'rgba(0, 0, 0, 0.54)'};
-  background-color: ${props => props.content === props.display ? 'rgba(66,165,245,0.1)' : '#fff'};
-  border-radius: ${props => props.isLeft ? '5px 0 0 5px' : '0 5px 5px 0'};
+  color: ${(props) =>
+    props.content === props.display ? "#42A5F5" : "rgba(0, 0, 0, 0.54)"};
+  background-color: ${(props) =>
+    props.content === props.display ? "rgba(66,165,245,0.1)" : "#fff"};
+  border-radius: ${(props) => (props.isLeft ? "5px 0 0 5px" : "0 5px 5px 0")};
   &:hover {
-    background-color: ${props => props.content === props.display ? 'rgba(11,114,192,0.1)' : 'rgba(0, 0, 0, 0.05)'};
+    background-color: ${(props) =>
+      props.content === props.display
+        ? "rgba(11,114,192,0.1)"
+        : "rgba(0, 0, 0, 0.05)"};
   }
   @media (min-width: 600px) {
     font-size: 12px;
@@ -31,7 +36,6 @@ const Button = styled.div`
 // ← styled-components
 
 const ToggleButton = memo((props) => {
-
   return (
     <Container>
       <Button
@@ -52,6 +56,6 @@ const ToggleButton = memo((props) => {
       </Button>
     </Container>
   );
-})
+});
 
 export default ToggleButton;

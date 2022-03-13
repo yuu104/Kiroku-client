@@ -49,40 +49,46 @@ const AddButton = styled.div`
 // ← styled-components
 
 const EditTimeLogTop = (props) => {
-
   let history = useHistory();
 
   return (
     <>
       <CloseButton onClick={() => history.push("/time-log")} />
-        <Title>記録の編集</Title>
+      <Title>記録の編集</Title>
       <Ul>
-        {
-          props.filterData.map((data) => {
-            const nowStartHours = ("0" + data.start_time.getHours()).slice(-2);
-            const nowStartMinutes =  ("0" + data.start_time.getMinutes()).slice(-2);
-            const nowFinishHours = ("0" + data.finish_time.getHours()).slice(-2);
-            const nowFinishMinutes = ("0" + data.finish_time.getMinutes()).slice(-2);
-            return (
-              <List
-                key={data.id}
-                onClick={() => {
-                  props.changeActionName(data.item_name);
-                  props.changeTime(nowStartHours, nowStartMinutes, nowFinishHours, nowFinishMinutes);
-                  props.changeEditId(data.id);
-                  history.push("/time-log/edit-log/edit");
-                }}
-              >
-                <div>{data.item_name}</div>
-                <div>{`${nowStartHours}:${nowStartMinutes}〜${nowFinishHours}:${nowFinishMinutes}`}</div>
-              </List>
-            )
-          })
-        }
+        {props.filterData.map((data) => {
+          const nowStartHours = ("0" + data.start_time.getHours()).slice(-2);
+          const nowStartMinutes = ("0" + data.start_time.getMinutes()).slice(
+            -2
+          );
+          const nowFinishHours = ("0" + data.finish_time.getHours()).slice(-2);
+          const nowFinishMinutes = ("0" + data.finish_time.getMinutes()).slice(
+            -2
+          );
+          return (
+            <List
+              key={data.id}
+              onClick={() => {
+                props.changeActionName(data.item_name);
+                props.changeTime(
+                  nowStartHours,
+                  nowStartMinutes,
+                  nowFinishHours,
+                  nowFinishMinutes
+                );
+                props.changeEditId(data.id);
+                history.push("/time-log/edit-log/edit");
+              }}
+            >
+              <div>{data.item_name}</div>
+              <div>{`${nowStartHours}:${nowStartMinutes}〜${nowFinishHours}:${nowFinishMinutes}`}</div>
+            </List>
+          );
+        })}
       </Ul>
       <AddButton
         onClick={() => {
-          props.changeTime('00', '00', '00', '00');
+          props.changeTime("00", "00", "00", "00");
           history.push("/time-log/edit-log/add");
         }}
       >
@@ -90,6 +96,6 @@ const EditTimeLogTop = (props) => {
       </AddButton>
     </>
   );
-}
+};
 
 export default EditTimeLogTop;

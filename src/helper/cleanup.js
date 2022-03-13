@@ -13,7 +13,8 @@ export const useUnmountRef = () => {
 
 export const useSafeState = (unmountRef, defaultValue) => {
   const [state, changeState] = useState(defaultValue);
-  const wrapChangeState = useCallback((v) => {
+  const wrapChangeState = useCallback(
+    (v) => {
       if (!unmountRef.current) {
         changeState(v);
       }
