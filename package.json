@@ -72,5 +72,9 @@
     "eslint-plugin-react-hooks": "^4.5.0",
     "eslint-plugin-unused-imports": "^2.0.0",
     "prettier": "^2.5.1"
+  },
+  "volta": {
+    "node": "14.19.1",
+    "yarn": "1.22.17"
   }
 }
