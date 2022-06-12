@@ -154,6 +154,7 @@ const StartAction: React.FC<Props> = ({
     )
     if (finishTimes[0] > dateObj) {
       alert('この時刻からは開始できません。')
+      setIsLoading(false)
       return
     }
     axios
