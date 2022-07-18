@@ -77,7 +77,7 @@ const Login: React.FC = () => {
   const onSubmit = () => {
     const data = { username, password }
     axios
-      .post<LoginData>('https://kiroku-server.herokuapp.com/users/login', data)
+      .post<LoginData>('http://localhost:3001/users/login', data)
       .then((res) => {
         if (res.data.message) {
           setIsUsername(false)

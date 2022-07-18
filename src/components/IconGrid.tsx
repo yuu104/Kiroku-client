@@ -41,7 +41,7 @@ const IconGrid: React.FC<Props> = ({ onClick, focusKey, isMask, force }) => {
     setIsLoading(true)
     axios
       .get<ActionData[] & { isInvalid?: boolean }>(
-        'https://kiroku-server.herokuapp.com/actions',
+        'http://localhost:3001/actions',
         {
           headers: {
             accessToken: localStorage.getItem('accessToken'),

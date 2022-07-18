@@ -93,7 +93,7 @@ const Signup: React.FC = () => {
 
   const onSubmit = (data: PostData) => {
     axios
-      .post('https://kiroku-server.herokuapp.com/users/signup', data)
+      .post('http://localhost:3001/users/signup', data)
       .then((res) => {
         if (res.data) {
           setAvailability(true)

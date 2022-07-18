@@ -28,7 +28,7 @@ const EditAction: React.FC<Props> = ({ changeForce }) => {
 
   useEffect(() => {
     axios
-      .get<ActionData[]>(`https://kiroku-server.herokuapp.com/actions/${id}`)
+      .get<ActionData[]>(`http://localhost:3001/actions/${id}`)
       .then((res) => {
         setName(res.data[0].item_name)
         setColor(res.data[0].color)
@@ -43,7 +43,7 @@ const EditAction: React.FC<Props> = ({ changeForce }) => {
       alert('カラーが選択されていません')
     } else {
       axios
-        .put('https://kiroku-server.herokuapp.com/actions', {
+        .put('http://localhost:3001/actions', {
           id,
           item_name: name,
           color,
@@ -57,7 +57,7 @@ const EditAction: React.FC<Props> = ({ changeForce }) => {
 
   const deleteAction = () => {
     axios
-      .delete('https://kiroku-server.herokuapp.com/actions', {
+      .delete('http://localhost:3001/actions', {
         data: {
           id,
         },

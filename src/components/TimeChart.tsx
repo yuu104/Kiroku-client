@@ -135,7 +135,7 @@ const TimeChart: React.FC<Props> = memo((props) => {
     setIsLoading(true)
     axios
       .get<LogedData[] & { isInvalid: boolean }>(
-        `https://kiroku-server.herokuapp.com/logs/${dateString}`,
+        `http://localhost:3001/logs/${dateString}`,
         {
           headers: { accessToken: localStorage.getItem('accessToken') },
         }

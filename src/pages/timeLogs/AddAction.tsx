@@ -32,7 +32,7 @@ const AddAction: React.FC<Props> = ({ changeForce }) => {
     } else {
       axios
         .post(
-          'https://kiroku-server.herokuapp.com/actions',
+          'http://localhost:3001/actions',
           {
             item_name: name,
             color,

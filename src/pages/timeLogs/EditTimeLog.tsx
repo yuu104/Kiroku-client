@@ -108,7 +108,7 @@ const EditTimeLog: React.FC<Props> = ({ chartData, nowDay, changeForce }) => {
       changeable = 'fast'
     if (changeable === 'ok') {
       axios
-        .patch(`https://kiroku-server.herokuapp.com/logs/${editId!}/edit`, {
+        .patch(`http://localhost:3001/logs/${editId!}/edit`, {
           start_time: `${nowDay.getFullYear()},${
             nowDay.getMonth() + 1
           },${nowDay.getDate()},${startHours},${startMinutes}`,
@@ -183,7 +183,7 @@ const EditTimeLog: React.FC<Props> = ({ chartData, nowDay, changeForce }) => {
     if (isAdd) {
       axios
         .post(
-          'https://kiroku-server.herokuapp.com/logs',
+          'http://localhost:3001/logs',
           {
             item_name: itemNamem,
             color,

@@ -27,7 +27,7 @@ const StopLog: React.FC<Props> = ({
     const getLogs = async () => {
       setIsLoading(true)
       const res = await axios.get<LoggingData[] & { isInvalid?: boolean }>(
-        'https://kiroku-server.herokuapp.com/logs',
+        'http://localhost:3001/logs',
         {
           headers: { accessToken: localStorage.getItem('accessToken') },
         }
@@ -76,7 +76,7 @@ const StopLog: React.FC<Props> = ({
       stopTime.getDate() - startTime.getDate() > 1
     ) {
       axios
-        .delete(`https://kiroku-server.herokuapp.com/logs`, {
+        .delete(`http://localhost:3001/logs`, {
           data: {
             id,
           },
@@ -89,7 +89,7 @@ const StopLog: React.FC<Props> = ({
     } else {
       axios
         .patch(
-          `https://kiroku-server.herokuapp.com/logs/${id!}/stop`,
+          `http://localhost:3001/logs/${id!}/stop`,
           {
             finish_time: stopTimeStr,
           },

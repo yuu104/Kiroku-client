@@ -109,7 +109,7 @@ const EditLog: React.FC<Props> = ({
 
   const deleteRecord = () => {
     axios
-      .delete('https://kiroku-server.herokuapp.com/logs', {
+      .delete('http://localhost:3001/logs', {
         data: {
           id: editId,
         },

@@ -105,7 +105,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get('https://kiroku-server.herokuapp.com/auth', {
+      .get('http://localhost:3001/auth', {
         headers: { accessToken: localStorage.getItem('accessToken') },
       })
       .then((res) => {

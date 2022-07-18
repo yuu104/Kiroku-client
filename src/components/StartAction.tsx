@@ -90,13 +90,13 @@ const StartAction: React.FC<Props> = ({
     let unmounted = false
     const getData = async () => {
       const getNowLog = axios.get<LoggingData[] & { isInvalid?: boolean }>(
-        'https://kiroku-server.herokuapp.com/logs',
+        'http://localhost:3001/logs',
         {
           headers: { accessToken: localStorage.getItem('accessToken') },
         }
       )
       const getLogs = axios.get<LogedData[] & { isInvalid?: boolean }>(
-        `https://kiroku-server.herokuapp.com/logs/${dateString}`,
+        `http://localhost:3001/logs/${dateString}`,
         {
           headers: { accessToken: localStorage.getItem('accessToken') },
         }
@@ -159,7 +159,7 @@ const StartAction: React.FC<Props> = ({
     }
     axios
       .post(
-        'https://kiroku-server.herokuapp.com/logs',
+        'http://localhost:3001/logs',
         {
           item_name: name,
           color: color,

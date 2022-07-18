@@ -179,7 +179,7 @@ const TimeLog: React.FC<Props> = ({ nowDay, changeDay }) => {
   useEffect(() => {
     axios
       .get<LoggingData[] & { isInvalid?: boolean }>(
-        'https://kiroku-server.herokuapp.com/logs',
+        'http://localhost:3001/logs',
         {
           headers: { accessToken: localStorage.getItem('accessToken') },
         }
